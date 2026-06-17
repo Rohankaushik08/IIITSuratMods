@@ -1,0 +1,61 @@
+#thead{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#thead>h1{
+    font-family:JetBrains Mono;
+    color: #8ED5FF;
+}
+#thead>h3{
+    font-family: Inter;
+    font-weight: 600;
+    font-size: 15px;
+    color: #BDC8D1;
+}
+table{
+    width: 80%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    /* text-align: center; */
+    color: white;
+}
+th, td{
+    padding: 12px;
+    border: 1px solid ;
+    border-color: #87929A;
+    font-family: JetBrains Mono;
+}
+th{
+    font-weight: bold;
+    font-size: small;
+    background-color: #1B2024;
+}
+#course-data{
+    color: #8ED5FF;
+}
+.tablebox{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.first-row{
+    background-color: #1B2024;
+}
+.f-name{
+    color: #8ED5FF;
+    font-family: Inter;
+    font-size: 10px;
+}
+.title{
+    color: #BDC8D1;
+    font-family: Inter;
+    font-size: 10px;
+}
+.room{
+    color: #87929A;
+    font-size: 9px;
+    font-family: JetBrains Mono;
+}

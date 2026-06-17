@@ -32,7 +32,7 @@ function App() {
             <Route path='/admin' element={<Admin />} />
             <Route path='/profile' element={<Profile />} />
             <Route path='/login' element={<Login />} />
-            <Route path='/timetable' element={<TimeTable />} />
+            <Route path='/timetable' element={<TimeTable year={"2025-26"} semester={"2nd"} section={"Cse 2"} />} />
             <Route path='/dashboard' element={<DashBoard />} />
             <Route path='/material' element={<Material />} />
             <Route path='/coursecard' element={<CourseCard />} />
