@@ -7,27 +7,59 @@ body{
   height: 100vh;
   width: 100vw;
 }
-.webpage{
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  height: 100vh;
-  width: 100vw;
-}
 .navbar{
+  display: flex;
+  align-items: center;
   background-color: #39485A;
-  height: 100vh;
+  height: 70px;
+  justify-content: space-around;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;   
+    height: auto;             
+    padding: 20px;
+    gap: 20px;                
+  }
+
+  ul {
+    flex-direction: column;   
+    width: 100%;              
+    max-width: 100%;          
+    gap: 15px;                
+    padding: 0;
+  }
+
+  li {
+    font-size: 16px;          
+    width: 100%;
+    text-align: center;
+  }
+}
+.menu-toggle-btn{
+  background: #3b82f6;
+  color: white;
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  flex: 1;
 }
 ul{
   list-style: none;
   color: #BDC8D1;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content:space-evenly;
   align-items: center;
+  flex-grow: 1;
+  max-width: 70%;
 }
 li{
   font-family: JetBrains Mono;
-  margin-top: 20px;
 }
 #head>h1{
   color: #8ED5FF;
@@ -43,11 +75,22 @@ li{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 20px;
 }
 main{
   height: 100vh;
   overflow-y: auto;
   padding: 30px;
   background-color: #0d1527;;
+}
+ul li a {
+  display: inline-block;
+  text-decoration: none;
+  color: #BDC8D1;
+  background-color: #2C3848;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid transparent;
 }

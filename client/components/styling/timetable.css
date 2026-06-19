@@ -1,61 +1,107 @@
-#thead{
+#thead {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-#thead>h1{
-    font-family:JetBrains Mono;
+
+#thead>h1 {
+    font-family: JetBrains Mono;
     color: #8ED5FF;
 }
-#thead>h3{
+
+#thead>h3 {
     font-family: Inter;
     font-weight: 600;
     font-size: 15px;
     color: #BDC8D1;
 }
-table{
+
+table {
     width: 80%;
     border-collapse: collapse;
     table-layout: fixed;
-    /* text-align: center; */
     color: white;
 }
-th, td{
+
+th,
+td {
     padding: 12px;
-    border: 1px solid ;
+    border: 1px solid;
     border-color: #87929A;
     font-family: JetBrains Mono;
 }
-th{
+
+th {
     font-weight: bold;
     font-size: small;
     background-color: #1B2024;
 }
-#course-data{
+
+#course-data {
     color: #8ED5FF;
 }
-.tablebox{
+
+.tablebox {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.first-row{
+
+.first-row {
     background-color: #1B2024;
 }
-.f-name{
+
+.f-name {
     color: #8ED5FF;
     font-family: Inter;
     font-size: 10px;
 }
-.title{
+
+.title {
     color: #BDC8D1;
     font-family: Inter;
     font-size: 10px;
 }
-.room{
+
+.room {
     color: #87929A;
     font-size: 9px;
     font-family: JetBrains Mono;
+}
+@media (max-width: 768px) {
+    #thead > h1 {
+        font-size: 24px;
+        text-align: center;
+    }
+    
+    #thead > h3 {
+        font-size: 12px;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .tablebox {
+        margin-top: 15px;
+        width: 100%;      
+        display: block;       
+        overflow-x: auto;        
+        overflow-y: hidden;      
+        -webkit-overflow-scrolling: touch; 
+        border: 1px solid #1B2024;
+        border-radius: 8px;
+    }
+
+    table {
+        width: 100%;
+        min-width: 850px;       
+        table-layout: auto;      
+        transform: none !important; 
+    }
+
+    th, td {
+        padding: 8px 4px;        
+        font-size: 11px;
+    }
 }
