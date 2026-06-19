@@ -44,6 +44,7 @@ export default function Login() {
     } catch (err) {
       alert("Login Failed");
     }
+    setLoading(false)
   };
 
   return (
