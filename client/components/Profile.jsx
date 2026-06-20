@@ -129,7 +129,7 @@ export default function Profile() {
   }
 
   return (
-    <div>
+    <div id="mainbox">
       <div className="profile-header">
         <h1>Profile</h1>
         <p>Manage your profile</p>
