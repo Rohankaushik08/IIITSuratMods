@@ -3,6 +3,7 @@ import axios from "axios";
 import { useAuth } from "../context/Auth";
 import "./styling/Profile.css";
 import {BlinkBlur}  from 'react-loading-indicators';
+import { useNavigate } from "react-router-dom";
 const allowedBatches = ["CSE 1", "CSE 2", "MNC", "ECE"];
 const allowedSemesters = [
   "Semester 1",
@@ -22,7 +23,7 @@ export default function Profile() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const nav = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     batch: "",
@@ -69,6 +70,7 @@ export default function Profile() {
     localStorage.removeItem("userToken");
     localStorage.removeItem("userProfile");
     window.location.reload();
+    nav('./login');
   }
 
   const handleSave = async () => {

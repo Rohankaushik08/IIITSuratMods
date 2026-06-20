@@ -11,8 +11,16 @@ import Material from '../components/Material'
 import { useContext, useState } from 'react'
 import { useAuth } from '../context/Auth'
 import SignUp from '../components/SignUp'
+import { useNavigate } from 'react-router-dom'
 function App() {
   const { user } = useAuth();
+  const nav = useNavigate();
+  function handleLogout(){
+    localStorage.removeItem("userToken");
+    localStorage.removeItem("userProfile");
+    window.location.reload();
+    nav('./login');
+  }
   const [navBar,setNavBar] = useState(false);
   return (
     <>
@@ -29,6 +37,9 @@ function App() {
             <li><NavLink to="/coursecard" style={{ textDecoration: "none", color: "inherit" }}>Course-Card</NavLink></li>
             <li><NavLink to="/material" style={{ textDecoration: "none", color: "inherit" }}>Materials</NavLink></li>
             <li><NavLink to="/admin" style={{ textDecoration: "none", color: "inherit" }}>Admin</NavLink></li>
+            {user &&<li><div className="action-box">
+            <button className="logout-btn" onClick={handleLogout}>Logout</button>
+          </div></li>}
           </ul>
         </aside>
         <main className="main-content">
@@ -37,7 +48,7 @@ function App() {
             onClick={() => setNavBar(!navBar)}
             style={{ margin: '10px', padding: '8px 16px' }}
           >
-            {navBar ? '✕ Close Menu' : '☰ Open Menu'}
+            {navBar ? '✕' : '☰'}
           </button>
           <Routes>
             <Route path='/admin' element={<Admin />} />
