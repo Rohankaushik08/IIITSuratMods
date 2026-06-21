@@ -16,12 +16,12 @@ const createTransporter = () => {
   requireEmailConfig();
 
   return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
+    host: process.env.SMTP_HOST.trim(),
     port: Number(process.env.SMTP_PORT || 587),
     secure: process.env.SMTP_SECURE === "true",
     auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS
+      user: process.env.SMTP_USER.trim(),
+      pass: process.env.SMTP_PASS.replace(/\s/g, "")
     }
   });
 };
@@ -42,10 +42,13 @@ export const sendEmailOtp = async ({ email, otp }) => {
   const transporter = createTransporter();
 
   await transporter.sendMail({
-    from: process.env.MAIL_FROM,
+    from: process.env.MAIL_FROM.trim(),
     to: email,
     subject: "Verify your IIIT Surat MODs email",
     text: `Your IIIT Surat MODs verification code is ${otp}. It expires in 10 minutes. Do not share this code with anyone.`
+  }).catch((error) => {
+    console.error("Email verification delivery failed:", error.message);
+    throw error;
   });
 };
 
@@ -53,9 +56,12 @@ export const sendPasswordResetOtp = async ({ email, otp }) => {
   const transporter = createTransporter();
 
   await transporter.sendMail({
-    from: process.env.MAIL_FROM,
+    from: process.env.MAIL_FROM.trim(),
     to: email,
     subject: "Reset your IIIT Surat MODs password",
     text: `Your IIIT Surat MODs password reset code is ${otp}. It expires in 10 minutes. Do not share this code with anyone.`
+  }).catch((error) => {
+    console.error("Password reset email delivery failed:", error.message);
+    throw error;
   });
 };

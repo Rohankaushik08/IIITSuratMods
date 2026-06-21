@@ -6,6 +6,8 @@ import cors from "cors";
 
 
 import authRoutes from "./routes/auth.routes.js";
+import profileRoutes from "./routes/profile.routes.js";
+import timetableRoutes from "./routes/timetable.routes.js";
 
 const app = express();//creates a web server API
 //Middleware is code that runs during a request before the final route handler.
@@ -26,6 +28,8 @@ app.get("/", (req, res) => {// iis the function that runs when someone visits th
 });
 
 app.use("/api/auth", authRoutes);//request, den it to authroutes 
+app.use("/api/profile", profileRoutes);
+app.use("/api/timetable", timetableRoutes);
 // Only auth routes are mounted right now because this backend folder currently
 // contains only the login/register files. Adding routes before their files
 // exist makes Node crash before login can run.

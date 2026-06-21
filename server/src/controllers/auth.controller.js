@@ -42,24 +42,38 @@ const isCollegeEmail = (email) => {
 const sendVerificationCode = async (user) => {
   const otp = createOtp();
   const now = new Date();
+  const expiresAt = new Date(now.getTime() + OTP_EXPIRY_MINUTES * 60 * 1000);
 
-  user.emailOtpHash = hashOtp(user._id, otp);
-  user.emailOtpExpiresAt = new Date(now.getTime() + OTP_EXPIRY_MINUTES * 60 * 1000);
-  user.emailOtpAttempts = 0;
-  user.emailOtpLastSentAt = now;
-  await user.save();
+  await User.updateOne(
+    { _id: user._id },
+    {
+      $set: {
+        emailOtpHash: hashOtp(user._id, otp),
+        emailOtpExpiresAt: expiresAt,
+        emailOtpAttempts: 0,
+        emailOtpLastSentAt: now
+      }
+    }
+  );
   await sendEmailOtp({ email: user.email, otp });
 };
 
 const sendPasswordResetCode = async (user) => {
   const otp = createOtp();
   const now = new Date();
+  const expiresAt = new Date(now.getTime() + OTP_EXPIRY_MINUTES * 60 * 1000);
 
-  user.passwordResetOtpHash = hashOtp(user._id, otp);
-  user.passwordResetOtpExpiresAt = new Date(now.getTime() + OTP_EXPIRY_MINUTES * 60 * 1000);
-  user.passwordResetOtpAttempts = 0;
-  user.passwordResetOtpLastSentAt = now;
-  await user.save();
+  await User.updateOne(
+    { _id: user._id },
+    {
+      $set: {
+        passwordResetOtpHash: hashOtp(user._id, otp),
+        passwordResetOtpExpiresAt: expiresAt,
+        passwordResetOtpAttempts: 0,
+        passwordResetOtpLastSentAt: now
+      }
+    }
+  );
   await sendPasswordResetOtp({ email: user.email, otp });
 };
 
@@ -229,8 +243,8 @@ export const requestPasswordReset = async (req, res) => {
     }
 
     const user = await User.findOne({ email }).select("+passwordResetOtpLastSentAt");
-    const successMessage = "If this verified account exists, a reset code has been sent.";
-    if (!user || !user.emailVerified) {
+    const successMessage = "If this account exists, a reset code has been sent.";
+    if (!user) {
       return res.json({ message: successMessage });
     }
 
@@ -245,11 +259,17 @@ export const requestPasswordReset = async (req, res) => {
     try {
       await sendPasswordResetCode(user);
     } catch (error) {
-      user.passwordResetOtpHash = undefined;
-      user.passwordResetOtpExpiresAt = undefined;
-      user.passwordResetOtpAttempts = 0;
-      user.passwordResetOtpLastSentAt = undefined;
-      await user.save();
+      await User.updateOne(
+        { _id: user._id },
+        {
+          $unset: {
+            passwordResetOtpHash: "",
+            passwordResetOtpExpiresAt: "",
+            passwordResetOtpLastSentAt: ""
+          },
+          $set: { passwordResetOtpAttempts: 0 }
+        }
+      );
       throw error;
     }
     return res.json({ message: successMessage });
@@ -273,7 +293,7 @@ export const resetPassword = async (req, res) => {
     }
 
     const user = await User.findOne({ email }).select("+passwordResetOtpHash +passwordResetOtpExpiresAt +passwordResetOtpAttempts");
-    if (!user || !user.emailVerified || !user.passwordResetOtpHash || !user.passwordResetOtpExpiresAt) {
+    if (!user || !user.passwordResetOtpHash || !user.passwordResetOtpExpiresAt) {
       return res.status(400).json({ message: "This password reset request is not valid" });
     }
 

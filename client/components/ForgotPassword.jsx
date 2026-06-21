@@ -1,5 +1,9 @@
+//all the code+comments written are cross verified with the documentation ; if u have any suggestions for improvement please let me know :)
+
+
+
 import { useState } from "react";
-import axios from "axios";
+import axios from "axios";//http requests to backend
 import { Link, useNavigate } from "react-router-dom";
 import "./styling/Login.css";
 
