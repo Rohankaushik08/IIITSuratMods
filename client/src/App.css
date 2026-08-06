@@ -328,11 +328,8 @@ main {
     font-size: 13px;
   }
   .app-footer {
-  padding: 24px 40px;
-  text-align: center;
-  color: #C2B3A7;
-  font-size: 18px;
-  font-family: inherit;
+  padding: 24px 20px;
+  font-size: 14px;
 }
 
 .app-footer .heart {
