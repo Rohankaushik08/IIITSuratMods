@@ -106,6 +106,12 @@ function App() {
 
             <Route path='*' element={<Home />} />
           </Routes>
+        <footer class="app-footer">
+          Made with <span class="heart">♥</span> by <span>  </span>
+          <a href="https://github.com/orgs/WastedPotential-Labs/people" target="_blank" rel="noopener noreferrer">
+           Team Wasted Potential
+          </a>
+        </footer>
         </main>
       </div>
     </>

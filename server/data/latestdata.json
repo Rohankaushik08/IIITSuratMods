@@ -1,0 +1,1961 @@
+[
+  {
+    "_id": {
+      "$oid": "249725e0c0f647a18b5732cc"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "CR 6",
+    "rawText": "CS 701 CR6 RK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "f05f783fcfc545898db56596"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "EC 702",
+    "courseName": "",
+    "facultyName": "RP",
+    "roomNo": "CR 6",
+    "rawText": "EC 702 CR6 RP",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "9f58eadcea5f4a8985c1258d"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 753",
+    "courseName": "",
+    "facultyName": "AT",
+    "roomNo": "CR 1",
+    "rawText": "CS 753 CR1 GROUP 1 AT",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "9a9cb6eb5825461da9a4525c"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9117/CS 743",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "CR 1",
+    "rawText": "CS 9117/CS743 GROUP 2 CR1 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "e9bafa53686947c9a8a66385"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "startMinutes": 660,
+    "endMinutes": 780,
+    "courseCode": "CS 9116/CS 742",
+    "courseName": "",
+    "facultyName": "PJM",
+    "roomNo": "CSE F2/PG25CS02",
+    "rawText": "CS 9116/CS 742 GROUP 1 CSE LAB 2 PJM/CSE F2/PG25CS02",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "683c5e7defac4885a4c2d669"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "startMinutes": 660,
+    "endMinutes": 780,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "RS25CS02/PG25CS01",
+    "rawText": "CS 701 GROUP 2 CSE LAB 1 RK/RS25CS02/PG25CS01",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "d7a4235d191a4b8a8082afe9"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "EC 702",
+    "courseName": "",
+    "facultyName": "RP",
+    "roomNo": "CR 4",
+    "rawText": "EC 702 CR4 RP",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "83c6ffce99c54aeca496b0eb"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 753",
+    "courseName": "",
+    "facultyName": "AT",
+    "roomNo": "CR 1",
+    "rawText": "CS 753 CR1 GROUP 1 AT",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "8e55a0902530482d95ff6877"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9117/CS 743",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "CR 1",
+    "rawText": "CS 9117/CS743 GROUP 2 CR1 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "ddfd26a40e7c44dfb377345c"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "CR 6",
+    "rawText": "CS 701 CR6 RK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "45625851eb3c475ebd9278ab"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "EC 702",
+    "courseName": "",
+    "facultyName": "RP",
+    "roomNo": "CR 6",
+    "rawText": "EC 702 CR 6 RP",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "8db2ae960b2e4010a513c850"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 753",
+    "courseName": "",
+    "facultyName": "AT",
+    "roomNo": "CR 6",
+    "rawText": "CS 753 GROUP 1 CR 6 AT",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "34892ec554e44252abfc9fba"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9117/CS 743",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "CR 1",
+    "rawText": "CS 9117/CS743 GROUP 2 CR1 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "d120752009924274a02b2075"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "startMinutes": 660,
+    "endMinutes": 780,
+    "courseCode": "CS 9106/EC 761",
+    "courseName": "",
+    "facultyName": "SR/KD",
+    "roomNo": "PG25CS08",
+    "rawText": "CS 9106/EC761 GROUP 3 ECE LAB 3 SR/KD / PG25CS08",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "4de739b1388f428dad35a41d"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 9116/CS 742",
+    "courseName": "",
+    "facultyName": "PJM",
+    "roomNo": "CR 1",
+    "rawText": "CS 9116/CS 742 GROUP 3 CR1 PJM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "60dc9bab66a542329e42f724"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9106/EC 761",
+    "courseName": "",
+    "facultyName": "KD",
+    "roomNo": "CR 1",
+    "rawText": "CS 9106/EC761 GROUP 4 CR1 KD",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "553e1db254604d63a3951c67"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "startMinutes": 660,
+    "endMinutes": 780,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "RS25CS02/PG25CS01",
+    "rawText": "CS 701 GROUP 1 CSE LAB 1 RK/RS25CS02/PG25CS01",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "22f24429918f4930a3849158"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "startMinutes": 660,
+    "endMinutes": 780,
+    "courseCode": "CS 9116/CS 742",
+    "courseName": "",
+    "facultyName": "PJM",
+    "roomNo": "CSE F2/PG25CS02",
+    "rawText": "CS9116/CS742 GROUP2 CSE LAB2 PJM/CSE F2/PG25CS02",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "1ed41b888f5f4ea2b8a2d9d4"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "CR 6",
+    "rawText": "CS701 CR 6 RK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "34a6db710e894f5eb8a38a79"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 9116/CS 742",
+    "courseName": "",
+    "facultyName": "PJM",
+    "roomNo": "CR 6",
+    "rawText": "CS 9116/CS 742 CR6 GROUP3 PJM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "2d7356fa72f64ac19bd0588e"
+    },
+    "source": "7th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9106/EC 761",
+    "courseName": "",
+    "facultyName": "KD",
+    "roomNo": "CR 1",
+    "rawText": "CS 9106/EC761 GROUP 4 CR1 KD",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "a3638ed2acc141a9a9842edc"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "startMinutes": 660,
+    "endMinutes": 780,
+    "courseCode": "CS 913/CS 702",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "",
+    "rawText": "CS 913 / CS 702 (Group 1) CSE LAB 2 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "d81db64539d24c9db38bf851"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "startMinutes": 660,
+    "endMinutes": 780,
+    "courseCode": "CS 9116/CS 742",
+    "courseName": "",
+    "facultyName": "PJM",
+    "roomNo": "CSE F5/PG25CS02",
+    "rawText": "CS 9116 / CS 742 (Group 2) CSE LAB 1 PJM/CSE F5 / PG25CS02",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "4716bcbaf97c42e7b57f3216"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "CR 6",
+    "rawText": "CS 701 CR 6 RK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "7b30c88685c4430db4b9c30d"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 9116/CS 742",
+    "courseName": "",
+    "facultyName": "PJM",
+    "roomNo": "CR 6",
+    "rawText": "CS 9116 / CS 742 (Group 3) CR 6 PJM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "0256a1ed45334c2ab15cfe34"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9117/CS 743",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "CR 1",
+    "rawText": "CS 9117 / CS 743 (Group 2) CR 1 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "6f817c56d8fa49c7a72d9fb9"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "tuesday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "CS 913/CS 702",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 6/CSE F1",
+    "rawText": "CS 913 / CS 702 CR 6 CSE F1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "a143288758484279b781538e"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "tuesday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "CR 6",
+    "rawText": "CS 701 CR 6 RK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "7bc347f5e8df472997626de6"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "tuesday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9117/CS 743",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "CR 1",
+    "rawText": "CS 9117 / CS 743 (Group 2) CR 1 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "413a292dfa1e4a74bd31e2f0"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 753",
+    "courseName": "",
+    "facultyName": "AT",
+    "roomNo": "CR 3",
+    "rawText": "CS 753 (Group 1) CR 3 AT",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "2aa31bbb6b974f79a6386d0f"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "CS 913/CS 702",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "CR 3",
+    "rawText": "CS 913 / CS 702 CR 3 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "e78b8fbdd16d48a893a1dd27"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "13:00",
+    "endTime": "15:00",
+    "startMinutes": 780,
+    "endMinutes": 900,
+    "courseCode": "CS 9116/CS 742",
+    "courseName": "",
+    "facultyName": "PJM",
+    "roomNo": "CSE3F5/PG25CS02",
+    "rawText": "CS 9116 / CS 742 (Group 1) CSE LAB 2 PJM/CSE3F5/PG25CS02",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "cf07092d8d0341acb13c704b"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "13:00",
+    "endTime": "15:00",
+    "startMinutes": 780,
+    "endMinutes": 900,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "RS25CS02/PG25CS01",
+    "rawText": "CS 701 (Group 2) CSE LAB 1 RK/RS25CS02 / PG25CS01",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "b4711a83a64c4244959881f6"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 9116/CS 742",
+    "courseName": "",
+    "facultyName": "PJM",
+    "roomNo": "CR 1/742",
+    "rawText": "CS 9116 / CS 742 (Group 3) CR 1 / 742 PJM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "fbe84207e3fa4bb3a600554d"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9117/CS 743",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "CR 1/743",
+    "rawText": "CS 9117 / CS 743 (Group 2) CR 1 / 743 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "053b7047b70c4d6a8e36e946"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "CR 6",
+    "rawText": "CS 701 CR 6 RK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "28232f029e35446cb93c6e51"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "startMinutes": 720,
+    "endMinutes": 840,
+    "courseCode": "CS 701",
+    "courseName": "",
+    "facultyName": "RK",
+    "roomNo": "RS25CS02/PG25CS01",
+    "rawText": "CS 701 (Group 1) CSE LAB 1 RK/RS25CS02 / PG25CS01",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "7d138e9be00647af8b941b7b"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "12:00",
+    "endTime": "14:00",
+    "startMinutes": 720,
+    "endMinutes": 840,
+    "courseCode": "CS 913/CS 702",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "",
+    "rawText": "CS 913 / CS 702 (Group 2) CSE LAB 2 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "c48f731c61f845d3821931b7"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 753",
+    "courseName": "",
+    "facultyName": "AT",
+    "roomNo": "CR 2",
+    "rawText": "CS 753 (Group 1) CR 2 AT",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "914d554c962b4201b6310da3"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9106/EC 761",
+    "courseName": "",
+    "facultyName": "KD",
+    "roomNo": "CR 1",
+    "rawText": "CS 9106 / EC 761 (Group 4) CR 1 KD",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "3a60c96e7aa449b998784c9f"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "11:00",
+    "endTime": "13:00",
+    "startMinutes": 660,
+    "endMinutes": 780,
+    "courseCode": "CS 9106/EC 761",
+    "courseName": "",
+    "facultyName": "KD/SR",
+    "roomNo": "PG25CS03",
+    "rawText": "CS 9106 / EC 761 (Group 1) CSE LAB 3 KD/PG25CS03/SR",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "61cf42883d1c485082b24ce2"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "CS 913/CS 702",
+    "courseName": "",
+    "facultyName": "PS",
+    "roomNo": "CR 1",
+    "rawText": "CS 913 / CS 702 CR 1 PS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "0ba4e69df1f74d30adf14a7b"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 753",
+    "courseName": "",
+    "facultyName": "AT",
+    "roomNo": "CR 1",
+    "rawText": "CS 753 (Group 1) CR 1 AT",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "fc1c8a70482f4b03810f0e18"
+    },
+    "source": "7th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 7",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "16:00",
+    "endTime": "17:00",
+    "startMinutes": 960,
+    "endMinutes": 1020,
+    "courseCode": "CS 9106/EC 761",
+    "courseName": "",
+    "facultyName": "KD",
+    "roomNo": "CR 1",
+    "rawText": "CS 9106 / EC 761 (Group 4) CR 1 KD",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "a9f8d833266a4b86aa6e0288"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "startMinutes": 600,
+    "endMinutes": 660,
+    "courseCode": "CS 503",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F5",
+    "rawText": "CS503 CR 2 CSE F5",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "dcf44b73b2f64f45b78aba1d"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F4",
+    "rawText": "CS504 CR 2 CSE F4",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "318244e9531c44d7b453342c"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "HM 505",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/HS F2",
+    "rawText": "HM505 CR 2 HS F2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "c9c649c191314bc6afd2777e"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CSE F4/PG25CS08",
+    "rawText": "CS504 CSE Lab 1 CSE F4 / PG25CS08 Group1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "b0569c7e4612461aa2eba373"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "monday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 502",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CSE F5/PG25CS06",
+    "rawText": "CS502 CSE Lab 2 CSE F5 / PG25CS06 Group2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "d824a5d2291943ae8eb6beaa"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "tuesday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 503",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F5",
+    "rawText": "CS503 CR 2 CSE F5",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "ea4d2d1a5fc142febbf5e81e"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "tuesday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "CS 514",
+    "courseName": "",
+    "facultyName": "SRS",
+    "roomNo": "CR 2",
+    "rawText": "CS514 CR 2 SRS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "08feacd7c6c342259f579d14"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "tuesday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "CS 501",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F5",
+    "rawText": "CS501 CR 2 CSE F5",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "1c63918b8ced40abab7164aa"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "tuesday",
+    "startTime": "15:00",
+    "endTime": "16:00",
+    "startMinutes": 900,
+    "endMinutes": 960,
+    "courseCode": "CS 502",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F3",
+    "rawText": "CS502 CR 2 CSE F3",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "0ab9c835f9a24065b861343b"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "startMinutes": 600,
+    "endMinutes": 660,
+    "courseCode": "CS 501",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F5",
+    "rawText": "CS501 CR 2 CSE F5",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "3c7eccd167a84dfe99b6acd0"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 502",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F3",
+    "rawText": "CS502 CR 2 CSE F3",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "f8dd01aa7a304e78951b8a21"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F4",
+    "rawText": "CS504 CR 2 CSE F4",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "29aece6ab13b4c36888e8595"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "HM 505",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/HS F2",
+    "rawText": "HM505 CR 2 HS F2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "7c4759bf9f814c0d8d5d5330"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 502",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CSE F3",
+    "rawText": "CS502 CSE Lab 1 CSE F3 Group1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "ca7ebb02b9b64ca3a1b0f186"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "wednesday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 503",
+    "courseName": "",
+    "facultyName": "RN",
+    "roomNo": "CSE F5/PGCS04",
+    "rawText": "CS503 CSE Lab 3 CSE F5/RN/ PGCS04 Group2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "d7aa7e36f5184811bf7af613"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "startMinutes": 600,
+    "endMinutes": 660,
+    "courseCode": "CS 501",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F5",
+    "rawText": "CS501 CR 2 CSE F5",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "aa804c6e88774f06b28c35fe"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 514",
+    "courseName": "",
+    "facultyName": "SRS",
+    "roomNo": "CR 2",
+    "rawText": "CS514 CR 2 SRS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "6cc93c32fc2b4c55a8504379"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "CS 502",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F3",
+    "rawText": "CS502 CR 2 CSE F3",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "d0388540e9fd4abf872144b8"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 503",
+    "courseName": "",
+    "facultyName": "RN",
+    "roomNo": "CSE F5/PGCS04",
+    "rawText": "CS503 CSE Lab 2 CSE F5/RN/ PGCS04 Group1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "f4a1a10ef8a94e4ead7f6aac"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "thursday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 502",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CSE F3",
+    "rawText": "CS502 CSE Lab 1 CSE F3 Group2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "bdbeb6f52aa34ab2a8770feb"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 514",
+    "courseName": "",
+    "facultyName": "SRS",
+    "roomNo": "CR 2",
+    "rawText": "CS514 CR 2 SRS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "1b460e202f5a4debaf9336d6"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "CS 503",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F5",
+    "rawText": "CS503 CR 2 CSE F5",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "d3e8692a10e74f48a04b74b1"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 2/CSE F4",
+    "rawText": "CS504 CR 2 CSE F4",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "eeb9e57523f1439c85f5f8ac"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 501",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CSE F5/PG25CS06",
+    "rawText": "CS501 CSE Lab 2 CSE F5 / PG25CS06 Group1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "e32e5d3ea17e43a69c323d05"
+    },
+    "source": "5th_CSE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "CSE",
+    "dayOfWeek": "friday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CSE F4/PG25CS08",
+    "rawText": "CS504 CSE Lab 1 CSE F4/ PG25CS08 Group1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "2850253181be49b2bd5afc68"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "startMinutes": 600,
+    "endMinutes": 660,
+    "courseCode": "EC 501",
+    "courseName": "",
+    "facultyName": "SM",
+    "roomNo": "CR 1",
+    "rawText": "EC501 CR 1 SM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "60d1ef0680c84683b80915fc"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 514",
+    "courseName": "",
+    "facultyName": "SRS",
+    "roomNo": "CR 1",
+    "rawText": "CS514 CR 1 SRS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "d96815afc0ca4d5ca3810b48"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "EC 503",
+    "courseName": "",
+    "facultyName": "HG",
+    "roomNo": "CR 1",
+    "rawText": "EC503 CR 1 HG",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "851a4cbcce9a47e8ab1175d6"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "LUNCH BREAK",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "",
+    "rawText": "LUNCH BREAK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "125a559a04ed4d60b4d09873"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "monday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "HM 505",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 1/HS F1",
+    "rawText": "HM505 CR 1 HS F1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "6298d2322eb74bf1914fd0bd"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "startMinutes": 600,
+    "endMinutes": 660,
+    "courseCode": "CS 514",
+    "courseName": "",
+    "facultyName": "SRS",
+    "roomNo": "CR 1",
+    "rawText": "CS514 CR 1 SRS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "b7fdbf33553e4610afd70a39"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 1/CSE F4",
+    "rawText": "CS504 CR 1 CSE F4",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "31f39a654c6a48079c69a391"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "EC 503",
+    "courseName": "",
+    "facultyName": "HG",
+    "roomNo": "CR 1",
+    "rawText": "EC503 CR 1 HG",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "5f2ab810caa441ea98e880d2"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "LUNCH BREAK",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "",
+    "rawText": "LUNCH BREAK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "ba5407a008304f988ea31f04"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "EC 9103/EC 502",
+    "courseName": "",
+    "facultyName": "RDM",
+    "roomNo": "CR 1",
+    "rawText": "EC9103/EC 502 CR 1 RDM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "f35d413efc9f409a9b946355"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "EC 501",
+    "courseName": "",
+    "facultyName": "SM/SKS",
+    "roomNo": "CR 1",
+    "rawText": "EC501 ECE Lab 3 SM/SKS Group 1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "9e600261a8ab49c2b2db5d49"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "tuesday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CSE F1/CSE F4/PG25CS06",
+    "rawText": "CS504 CSELab 3 CSE F1/CSE F4/ PG25CS06 Group 2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "4ed23f47d3c243adacdd58fe"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "EC 503",
+    "courseName": "",
+    "facultyName": "HG",
+    "roomNo": "CR 1",
+    "rawText": "EC503 CR 1 HG",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "5dcb857103ab4fcca64f6963"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "EC 9103/EC 502",
+    "courseName": "",
+    "facultyName": "RDM",
+    "roomNo": "CR 1",
+    "rawText": "EC9103/EC 502 CR 1 RDM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "222929481384446e96303685"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "LUNCH BREAK",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "",
+    "rawText": "LUNCH BREAK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "26c9e82ce63c478597ecfe22"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "HM 505",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 1/HS F2",
+    "rawText": "HM505 CR 1 HS F2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "6b689a10b4ea40d78920675e"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CSE F1/CSE F4/PG25CS06",
+    "rawText": "CS504 CSELab 3 CSE F1/CSE F4/ PG25CS06 Group 1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "5eaefb45eaae4221a1785155"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "wednesday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "EC 503",
+    "courseName": "",
+    "facultyName": "HG/RP",
+    "roomNo": "CR 1",
+    "rawText": "EC503 ECE Lab 3 HG/RP Group 2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "a4540ee7c00543819cfa69aa"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 1/CSE F4",
+    "rawText": "CS504 CR 1 CSE F4",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "2830d9c612e647bf9eec123d"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "LUNCH BREAK",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "",
+    "rawText": "LUNCH BREAK",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "9be2e5cb8147473b8c3ee34d"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "CS 514",
+    "courseName": "",
+    "facultyName": "SRS",
+    "roomNo": "CR 1",
+    "rawText": "CS514 CR 1 SRS",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "59b5a55010854650ac9566de"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "14:00",
+    "endTime": "15:00",
+    "startMinutes": 840,
+    "endMinutes": 900,
+    "courseCode": "EC 501",
+    "courseName": "",
+    "facultyName": "SM",
+    "roomNo": "CR 1",
+    "rawText": "EC501 CR 1 SM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "fb1d0447c15041b9a5cb4d72"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "EC 503",
+    "courseName": "",
+    "facultyName": "HG/RP",
+    "roomNo": "CR 1",
+    "rawText": "EC503 ECE Lab 3 HG/RP Group 1",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "0ace63b0fc404cdfacb190fc"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "thursday",
+    "startTime": "15:00",
+    "endTime": "17:00",
+    "startMinutes": 900,
+    "endMinutes": 1020,
+    "courseCode": "EC 501",
+    "courseName": "",
+    "facultyName": "SM/SKS",
+    "roomNo": "CR 1",
+    "rawText": "EC501 ECE Lab 3 SM/SKS Group 2",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "fc28e72013dd4b74ad0d8034"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "10:00",
+    "endTime": "11:00",
+    "startMinutes": 600,
+    "endMinutes": 660,
+    "courseCode": "EC 501",
+    "courseName": "",
+    "facultyName": "SM",
+    "roomNo": "CR 1",
+    "rawText": "EC501 CR 1 SM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "13afdd8ea0154a11a071b7d8"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "11:00",
+    "endTime": "12:00",
+    "startMinutes": 660,
+    "endMinutes": 720,
+    "courseCode": "CS 504",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "CR 1/CSE F4",
+    "rawText": "CS504 CR 1 CSE F4",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "4e6bf748dab34f799db87c2e"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "12:00",
+    "endTime": "13:00",
+    "startMinutes": 720,
+    "endMinutes": 780,
+    "courseCode": "EC 9103/EC 502",
+    "courseName": "",
+    "facultyName": "RDM",
+    "roomNo": "CR 1",
+    "rawText": "EC9103 EC 502 CR 1 RDM",
+    "isCancelled": false
+  },
+  {
+    "_id": {
+      "$oid": "ae4e7081519148d0a7578dfd"
+    },
+    "source": "5th_ECE.pdf",
+    "program": "B.Tech",
+    "semester": "Semester 5",
+    "batch": "ECE",
+    "dayOfWeek": "friday",
+    "startTime": "13:00",
+    "endTime": "14:00",
+    "startMinutes": 780,
+    "endMinutes": 840,
+    "courseCode": "LUNCH BREAK",
+    "courseName": "",
+    "facultyName": "",
+    "roomNo": "",
+    "rawText": "LUNCH BREAK",
+    "isCancelled": false
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+]

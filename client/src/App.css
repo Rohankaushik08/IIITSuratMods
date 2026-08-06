@@ -250,7 +250,13 @@ main {
 .nav-open .main-content {
   margin-left: 280px;
 }
-
+.app-footer {
+  padding: 24px 40px;
+  text-align: center;
+  color: #C2B3A7;
+  font-size: 18px;
+  font-family: inherit;
+}
 /* Tablet and mobile */
 @media (max-width: 768px) {
   .dashboard,
@@ -289,6 +295,10 @@ main {
   #head > h1 {
     font-size: 19px;
   }
+  .app-footer {
+  padding: 24px 20px;
+  font-size: 16px;
+}
 }
 
 /* Small phones */
@@ -317,4 +327,47 @@ main {
     padding: 12px 14px;
     font-size: 13px;
   }
+  .app-footer {
+  padding: 24px 40px;
+  text-align: center;
+  color: #C2B3A7;
+  font-size: 18px;
+  font-family: inherit;
+}
+
+.app-footer .heart {
+  color: #f87171;
+}
+
+.app-footer a {
+  color: #8AD8D4;
+  text-decoration: none;
+  font-weight: 600;
+  transition: text-decoration 0.2s ease;
+}
+
+.app-footer a:hover {
+  text-decoration: none;
+}
+.heart{
+  font-size: 18px;
+}
+}
+
+.app-footer .heart {
+  color: #f87171;
+}
+
+.app-footer a {
+  color: #8AD8D4;
+  text-decoration: none;
+  font-weight: 600;
+  transition: text-decoration 0.2s ease;
+}
+
+.app-footer a:hover {
+  text-decoration: none;
+}
+.heart{
+  font-size: 22px;
 }
