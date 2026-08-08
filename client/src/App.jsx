@@ -79,39 +79,41 @@ function App() {
         </aside>
         {navBar && <button className="nav-backdrop" type="button" aria-label="Close menu" onClick={() => setNavBar(false)} />}
         <main className="main-content">
-          <Notifications />
-          <button
-            className="menu-toggle-btn"
-            onClick={() => setNavBar(!navBar)}
-            aria-label={navBar ? 'Close menu' : 'Open menu'}
-            aria-expanded={navBar}
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            {navBar ? '✕' : '≡'}
-          </button>
-          <Routes>
-            <Route path='/login' element={<Login />} />
-            <Route path="/signup" element={<SignUp />} />
-            <Route path="/verify-email" element={<VerifyEmail />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
+          <div className="page-body">
+            <Notifications />
+            <button
+              className="menu-toggle-btn"
+              onClick={() => setNavBar(!navBar)}
+              aria-label={navBar ? 'Close menu' : 'Open menu'}
+              aria-expanded={navBar}
+            >
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              {navBar ? '✕' : '≡'}
+            </button>
+            <Routes>
+              <Route path='/login' element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+              <Route path="/verify-email" element={<VerifyEmail />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
 
-            <Route path='/profile' element={<PrivateRoute><Profile /></PrivateRoute>} />
-            <Route path='/timetable' element={<PrivateRoute><TimeTable year={"2025-26"} /></PrivateRoute>} />
-            <Route path='/venues' element={<PrivateRoute><Venues /></PrivateRoute>} />
-            <Route path='/academics' element={<PrivateRoute><Academics /></PrivateRoute>} />
-            <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} />
-            <Route path='/admin' element={<AdminRoute><Admin /></AdminRoute>} />
+              <Route path='/profile' element={<PrivateRoute><Profile /></PrivateRoute>} />
+              <Route path='/timetable' element={<PrivateRoute><TimeTable year={"2025-26"} /></PrivateRoute>} />
+              <Route path='/venues' element={<PrivateRoute><Venues /></PrivateRoute>} />
+              <Route path='/academics' element={<PrivateRoute><Academics /></PrivateRoute>} />
+              <Route path='/dashboard' element={<PrivateRoute><DashBoard /></PrivateRoute>} />
+              <Route path='/admin' element={<AdminRoute><Admin /></AdminRoute>} />
 
-            <Route path='*' element={<Home />} />
-          </Routes>
-        <footer class="app-footer">
-          Made with <span class="heart">♥</span> by <span>  </span>
-          <a href="https://github.com/orgs/WastedPotential-Labs/people" target="_blank" rel="noopener noreferrer">
-           Team Wasted Potential
-          </a>
-        </footer>
+              <Route path='*' element={<Home />} />
+            </Routes>
+          </div>
+          <footer className="app-footer">
+            Made with <span className="heart">♥</span> by <span>  </span>
+            <a href="https://github.com/orgs/WastedPotential-Labs/people" target="_blank" rel="noopener noreferrer">
+             Team Wasted Potential
+            </a>
+          </footer>
         </main>
       </div>
     </>
