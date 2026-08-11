@@ -261,7 +261,7 @@ main {
   padding: 24px 40px;
   text-align: center;
   color: #C2B3A7;
-  font-size: 18px;
+  font-size: 14px;
   font-family: inherit;
 }
 /* Tablet and mobile */
@@ -304,7 +304,7 @@ main {
   }
   .app-footer {
   padding: 24px 20px;
-  font-size: 16px;
+  font-size: 13px;
 }
 }
 
@@ -336,7 +336,7 @@ main {
   }
   .app-footer {
   padding: 24px 20px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .app-footer .heart {
