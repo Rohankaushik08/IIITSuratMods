@@ -4,8 +4,7 @@ import {
   deleteSchedule,
   getAdminSummary,
   listSchedules,
-  updateSchedule,
-  upsertVenue
+  updateSchedule
 } from "../controllers/admin.controller.js";
 import { protect, requireAdmin } from "../middleware/auth.js";
 import asyncHandler from "../utils/asyncHandler.js";
@@ -19,6 +18,5 @@ router.get("/schedules", asyncHandler(listSchedules));
 router.post("/schedules", asyncHandler(createSchedule));
 router.put("/schedules/:id", asyncHandler(updateSchedule));
 router.delete("/schedules/:id", asyncHandler(deleteSchedule));
-router.post("/venues", asyncHandler(upsertVenue));
 
 export default router;

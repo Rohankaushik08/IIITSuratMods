@@ -329,7 +329,14 @@ export default function TimeTable(props) {
                   className={`time-cell time-cell--header${row.isBreak ? " time-cell--header-break" : ""}`}
                   key={`head-${row.timeSlot}`}
                 >
-                  {row.isBreak ? (row.label || formatSlot(row.timeSlot)) : formatSlot(row.timeSlot)}
+                  {row.isBreak ? (
+                    <>
+                      {row.label && <span className="break-label">{row.label}</span>}
+                      {formatSlot(row.timeSlot)}
+                    </>
+                  ) : (
+                    formatSlot(row.timeSlot)
+                  )}
                 </div>
               ))}
             </div>

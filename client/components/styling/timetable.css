@@ -187,6 +187,11 @@ html, body {
   padding: 8px 4px 10px;
 }
 
+.break-label {
+  display: block;
+  margin-bottom: 4px;
+}
+
 /* The leading column now holds day names, not times — give it the same
    full-height dark cell treatment the time column used to have, but with
    the bolder day-heading type. */
