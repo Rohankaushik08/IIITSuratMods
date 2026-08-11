@@ -260,8 +260,8 @@ main {
   flex-shrink: 0;
   padding: 24px 40px;
   text-align: center;
-  color: #C2B3A7;
-  font-size: 14px;
+  color: #a89f96;
+  font-size: 13px;
   font-family: inherit;
 }
 /* Tablet and mobile */
@@ -305,6 +305,7 @@ main {
   .app-footer {
   padding: 24px 20px;
   font-size: 13px;
+  color: #a89f96;
 }
 }
 
@@ -336,7 +337,8 @@ main {
   }
   .app-footer {
   padding: 24px 20px;
-  font-size: 12px;
+  font-size: 13px;
+  color: #a89f96;
 }
 
 .app-footer .heart {
