@@ -53,12 +53,13 @@ const getSyllabusType = (email) => {
   return "old";
 };
 
-const lineLooksLikeCourse = (line) =>
-  /\b[A-Z]{2,3}\s?\d{3,4}\b/.test(line) ||
-  /\b(L|T|P|C|Credits?)\b/i.test(line) ||
-  /\b(Mathematics|Programming|Circuit|Data|Signals|Algorithm|Communication|Electronics|Physics|Project|Laboratory|Design)\b/i.test(line);
-
 const SUBJECT_HEADER_RE = /^([A-Z]{2,4}\s?-?\s?\d{3,4}[A-Z]?)\s*:\s*(.+?)(?:\s+(\d+)\s+(\d+)\s+(\d+)\s+(\d+))?$/;
+// Elective-list PDFs give course headers as "Analog VLSI Design 3 0 0 3" with
+// no "CODE:" prefix at all. Only tried when a document never uses the normal
+// coded header anywhere, so it can't misfire inside a document that already
+// parses correctly (a stray "... Edition 2 0 1 0"-shaped line would otherwise
+// risk being read as a new subject).
+const NAME_LTPC_HEADER_RE = /^([A-Za-z][A-Za-z0-9 &\-/().]{2,58}?)\s+(\d)\s+(\d)\s+(\d)\s+(\d)$/;
 const UNIT_RE = /^(?:Unit\s*[–-]?\s*\d+\s*:?\s*)?(.+?)\s+(\d+)\s+Hours?$/i;
 const UNIT_WITH_DETAILS_RE = /^(?:Unit\s*[\u2013-]?\s*(\d+)\s*:?\s*)?(.+?)\s+(\d+)\s+Hours?\s+(.+)$/i;
 const BOOK_SECTION_RE = /^(Recommended Books|Reference Books|Text-?Books?|Text Books?)$/i;
@@ -116,7 +117,10 @@ const parseSubjectSyllabus = (lines) => {
     lastUnit.details = `${lastUnit.details} ${text}`.trim();
   };
 
-  expandSyllabusLines(lines).forEach((line) => {
+  const expanded = expandSyllabusLines(lines);
+  const hasCodedHeader = expanded.some((line) => SUBJECT_HEADER_RE.test(line));
+
+  expanded.forEach((line) => {
     if (!line) return;
     if (/^B\.?\s?Tech/i.test(line) && !SUBJECT_HEADER_RE.test(line)) return;
 
@@ -135,6 +139,17 @@ const parseSubjectSyllabus = (lines) => {
       subjects.push(current);
       activeBookSection = "";
       return;
+    }
+
+    if (!hasCodedHeader && !UNIT_RE.test(line) && !CONTACT_RE.test(line)) {
+      const altHeader = line.match(NAME_LTPC_HEADER_RE);
+      if (altHeader) {
+        const [, name, l, t, p, c] = altHeader;
+        current = { code: "", name: name.trim(), credits: { l, t, p, c }, units: [], books: [], notes: [], contactHours: "" };
+        subjects.push(current);
+        activeBookSection = "";
+        return;
+      }
     }
 
     const contact = line.match(CONTACT_RE);
@@ -178,6 +193,30 @@ const parseSubjectSyllabus = (lines) => {
 
   return subjects.filter((subject) => subject.code || subject.units.length || subject.books.length);
 };
+
+// Some extracted PDFs (policy/guideline documents rather than syllabi) split
+// mid-sentence, one or two words per bullet. Re-joining every bullet with a
+// space reconstructs the original sentences regardless of how they were
+// split, then numbered markers ("1. ...", "2. ...") give natural paragraph
+// breaks — far more readable than one <li> per word fragment.
+const buildProseParagraphs = (bullets) => {
+  const text = bullets.join(" ").replace(/\s+/g, " ").trim();
+  if (!text) return [];
+  return text
+    .split(/\s+(?=\d{1,2}\.\s[A-Z])/g)
+    .map((part) => part.trim())
+    .filter(Boolean);
+};
+
+function ProseBlock({ paragraphs }) {
+  return (
+    <div className="prose-block">
+      {paragraphs.map((paragraph, index) => (
+        <p key={index}>{paragraph}</p>
+      ))}
+    </div>
+  );
+}
 
 function SubjectSyllabus({ subjects }) {
   return (
@@ -297,8 +336,7 @@ function BulletBlock({ title, item, textEntry }) {
   const bullets = textEntry?.bullets || [];
   const parsed = useMemo(() => parseCurriculum(bullets), [bullets]);
   const subjectSyllabus = useMemo(() => parseSubjectSyllabus(bullets), [bullets]);
-  const preferred = bullets.filter(lineLooksLikeCourse);
-  const visibleBullets = (preferred.length >= 8 ? preferred : bullets).slice(0, 140);
+  const proseParagraphs = useMemo(() => buildProseParagraphs(bullets), [bullets]);
 
   // Render a structured table when enough of the text parses as course rows;
   // otherwise fall back to the raw extracted lines.
@@ -323,12 +361,8 @@ function BulletBlock({ title, item, textEntry }) {
         parsed.sections.map((section) => <CourseTable section={section} key={section.title} />)
       ) : subjectSyllabus.length >= 2 ? (
         <SubjectSyllabus subjects={subjectSyllabus} />
-      ) : visibleBullets.length ? (
-        <ul className="curriculum-list">
-          {visibleBullets.map((line, index) => (
-            <li key={`${item?.id || title}-${index}`}>{line}</li>
-          ))}
-        </ul>
+      ) : proseParagraphs.length ? (
+        <ProseBlock paragraphs={proseParagraphs} />
       ) : (
         <p className="academics-empty">No text could be extracted for this file.</p>
       )}

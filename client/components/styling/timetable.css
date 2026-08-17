@@ -141,15 +141,25 @@ html, body {
 }
 
 .time-cell,
-.empty-cell,
-.course-block {
+.empty-cell {
   border-radius: var(--radius);
+  min-height: var(--cell-min-h);
+  background: var(--schedule-surface-dark);
+}
+
+/* Wraps one or more .course-block cards in a single grid cell — a cell can
+   hold two parallel lab groups (same day/time, different rooms), which
+   stack vertically here instead of the second one being silently dropped. */
+.course-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   min-height: var(--cell-min-h);
 }
 
-.time-cell,
-.empty-cell {
-  background: var(--schedule-surface-dark);
+.course-cell .course-block {
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 .time-cell {
@@ -187,11 +197,6 @@ html, body {
   padding: 8px 4px 10px;
 }
 
-.break-label {
-  display: block;
-  margin-bottom: 4px;
-}
-
 /* The leading column now holds day names, not times — give it the same
    full-height dark cell treatment the time column used to have, but with
    the bolder day-heading type. */
@@ -225,6 +230,7 @@ html, body {
 }
 
 .course-block {
+  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -240,17 +246,6 @@ html, body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.course-title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.24;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .course-faculty {
@@ -470,10 +465,6 @@ html, body {
     font-size: 13px;
   }
 
-  .course-title {
-    font-size: 11px;
-  }
-
   .course-faculty {
     font-size: 10px;
   }
@@ -494,12 +485,6 @@ html, body {
 
   .course-block--lab h3 {
     font-size: 10.5px;
-    line-height: 1.15;
-  }
-
-  .course-block--lab .course-title {
-    -webkit-line-clamp: 2;
-    font-size: 9px;
     line-height: 1.15;
   }
 

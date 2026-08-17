@@ -184,29 +184,29 @@
   flex: 0 0 auto;
 }
 
-.curriculum-list {
+/* Fallback for prose/guideline PDFs (not a unit-based syllabus at all) —
+   reconstructed paragraphs, styled like .unit-card p for the same reading
+   rhythm as the structured views instead of a jarring plain bullet list. */
+.prose-block {
   display: grid;
-  gap: 8px;
-  list-style-position: outside;
-  margin-left: 18px;
-  max-height: 520px;
+  gap: 14px;
+  max-height: 620px;
   overflow-y: auto;
   padding-right: 10px;
 }
 
-.curriculum-list li {
+.prose-block p {
   color: var(--text);
   font-size: 14px;
   font-weight: 300;
-  line-height: 1.45;
-  margin-top: 0;
+  line-height: 1.6;
 }
 
-.curriculum-list::-webkit-scrollbar {
+.prose-block::-webkit-scrollbar {
   width: 6px;
 }
 
-.curriculum-list::-webkit-scrollbar-thumb {
+.prose-block::-webkit-scrollbar-thumb {
   background: var(--border);
   border-radius: 3px;
 }
@@ -529,12 +529,11 @@
     font-size: 18px;
   }
 
-  .curriculum-list {
-    margin-left: 14px;
+  .prose-block {
     max-height: 400px;
   }
 
-  .curriculum-list li {
+  .prose-block p {
     font-size: 13px;
   }
 

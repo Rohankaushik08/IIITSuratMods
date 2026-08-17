@@ -37,11 +37,14 @@ const getSubjectMap = (rows) => {
 
   rows.forEach((row) => {
     if (row.isBreak) return;
-    row.schedule.forEach((course) => {
-      if (!course || course === "covered" || map.has(course.courseCode)) return;
-      map.set(course.courseCode, {
-        ...course,
-        color: subjectColors[map.size % subjectColors.length]
+    row.schedule.forEach((cell) => {
+      if (!cell || cell === "covered") return;
+      cell.forEach((course) => {
+        if (map.has(course.courseCode)) return;
+        map.set(course.courseCode, {
+          ...course,
+          color: subjectColors[map.size % subjectColors.length]
+        });
       });
     });
   });
@@ -87,13 +90,13 @@ const buildRowsFromSchedules = (schedules) => {
       );
       if (covering) return "covered";
 
-      const match = schedules.find(
+      const matches = schedules.filter(
         (item) => item.dayOfWeek === day && item.startMinutes === start
       );
-      if (!match) return null;
+      if (!matches.length) return null;
 
-      const rowSpan = Math.max(1, Math.round((match.endMinutes - match.startMinutes) / HOUR));
-      return { ...normalizeCourse(match), rowSpan };
+      const rowSpan = Math.max(1, Math.round((matches[0].endMinutes - matches[0].startMinutes) / HOUR));
+      return matches.map((match) => ({ ...normalizeCourse(match), rowSpan }));
     });
 
     const isBreak = schedule.every((c) => c === null);
@@ -103,7 +106,6 @@ const buildRowsFromSchedules = (schedules) => {
       rawStartTime: minutesToTime(start),
       rawEndTime: minutesToTime(end),
       isBreak,
-      label: isBreak ? "Lunch Break" : undefined,
       schedule
     };
   });
@@ -157,7 +159,14 @@ export default function TimeTable(props) {
       });
   }, [user]);
 
-  const data = importedSchedules.length ? buildRowsFromSchedules(importedSchedules) : !user ? weeklyTimetableMock : [];
+  const data = importedSchedules.length
+    ? buildRowsFromSchedules(importedSchedules)
+    : !user
+    ? weeklyTimetableMock.map((row) => ({
+        ...row,
+        schedule: row.schedule.map((cell) => (cell ? [cell] : cell))
+      }))
+    : [];
   const subjectMap = getSubjectMap(data);
   const section = user ? `${user.batch} · ${user.semester}` : "Sample CSE timetable";
 
@@ -329,14 +338,7 @@ export default function TimeTable(props) {
                   className={`time-cell time-cell--header${row.isBreak ? " time-cell--header-break" : ""}`}
                   key={`head-${row.timeSlot}`}
                 >
-                  {row.isBreak ? (
-                    <>
-                      {row.label && <span className="break-label">{row.label}</span>}
-                      {formatSlot(row.timeSlot)}
-                    </>
-                  ) : (
-                    formatSlot(row.timeSlot)
-                  )}
+                  {formatSlot(row.timeSlot)}
                 </div>
               ))}
             </div>
@@ -394,31 +396,39 @@ export default function TimeTable(props) {
                       );
                     }
 
-                    const color = subjectMap.get(course.courseCode)?.color || "lime";
                     return (
-                      <article
-                        className={`course-block block--${color}${course.isLab ? " course-block--lab" : ""}`}
+                      <div
+                        className="course-cell"
                         style={{
                           gridRow: dayIdx + 1,
-                          gridColumn: `${colIdx + 2} / span ${course.rowSpan || 1}`
+                          gridColumn: `${colIdx + 2} / span ${course[0].rowSpan || 1}`
                         }}
-                        key={`${key}-${course.courseCode}`}
+                        key={key}
                       >
-                        <h3 title={course.courseCode}>{course.courseCode}</h3>
-                        <p className="course-title" title={course.courseName}>{course.courseName}</p>
-                        <p className="course-faculty" title={course.facultyName}>{course.facultyName}</p>
-                        <strong title={course.roomNo}>{course.roomNo}</strong>
-                        {isAdmin && (
-                          <button
-                            type="button"
-                            className="edit-hint"
-                            onClick={() => openEdit(course)}
-                            aria-label={`Edit ${course.courseCode}`}
-                          >
-                            Edit
-                          </button>
-                        )}
-                      </article>
+                        {course.map((c) => {
+                          const color = subjectMap.get(c.courseCode)?.color || "lime";
+                          return (
+                            <article
+                              className={`course-block block--${color}${c.isLab ? " course-block--lab" : ""}`}
+                              key={c._id || `${key}-${c.courseCode}-${c.roomNo}`}
+                            >
+                              <h3 title={c.courseCode}>{c.courseCode}</h3>
+                              <p className="course-faculty" title={c.facultyName}>{c.facultyName}</p>
+                              <strong title={c.roomNo}>{c.roomNo}</strong>
+                              {isAdmin && (
+                                <button
+                                  type="button"
+                                  className="edit-hint"
+                                  onClick={() => openEdit(c)}
+                                  aria-label={`Edit ${c.courseCode}`}
+                                >
+                                  Edit
+                                </button>
+                              )}
+                            </article>
+                          );
+                        })}
+                      </div>
                     );
                   })}
                 </div>
