@@ -424,6 +424,27 @@ export default function TimeTable(props) {
 
                     if (course === "covered") return null;
 
+                    // A split lab cell (two parallel group entries) is unreadable
+                    // stacked by default and ambiguous without picking a group —
+                    // prompt for a selection instead of guessing which to show.
+                    const isSplitLab = course && course.length > 1 && course.some((c) => (c.groups || []).length === 1);
+                    if (course && groupFilter === "all" && isSplitLab) {
+                      return (
+                        <div
+                          className="course-cell"
+                          style={{
+                            gridRow: dayIdx + 1,
+                            gridColumn: `${colIdx + 2} / span ${course[0].rowSpan || 1}`
+                          }}
+                          key={key}
+                        >
+                          <div className="course-block course-block--prompt">
+                            <p>Select your group above to see this lab</p>
+                          </div>
+                        </div>
+                      );
+                    }
+
                     const visibleCourses = course ? course.filter(matchesGroupFilter) : [];
 
                     if (!visibleCourses.length) {

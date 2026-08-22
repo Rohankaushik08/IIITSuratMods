@@ -266,6 +266,24 @@ html, body {
   padding: 22px 18px;
 }
 
+/* Placeholder shown in a split-lab cell before a group is picked — deliberately
+   muted/dashed instead of a subject color so it reads as a prompt, not a class. */
+.course-block--prompt {
+  align-items: center;
+  background: none;
+  border: 1px dashed #3a352f;
+  color: var(--schedule-muted);
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+.course-block--prompt p {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
 .course-block h3 {
   font-size: 17px;
   font-weight: 600;
