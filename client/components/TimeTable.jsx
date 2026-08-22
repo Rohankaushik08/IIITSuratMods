@@ -52,6 +52,24 @@ const getSubjectMap = (rows) => {
   return map;
 };
 
+// "Group N" shows up in different fields depending on which PDF a row was
+// transcribed from — parenthesized in facultyName ("NB / PG25CS01 (Group 1)")
+// for newer entries, or bare in rawText ("... CR1 Group 3") for older ones.
+// A row can also legitimately mention more than one group ("Group 1, Group 2")
+// when it's shared by both instead of split — that's not exclusive to either,
+// so it stays visible no matter which group is selected.
+//
+// Some non-lab rows (electives held in a regular CR room) also carry a
+// "Group N" tag for unrelated reasons (elective-section grouping, not a
+// parallel lab split) — the group filter is only meaningful for labs, so
+// group numbers are only parsed off rows that are actually in a lab room.
+const parseGroupNumbers = (slot) => {
+  if (!/lab/i.test(slot.roomNo || "")) return [];
+  const haystack = [slot.facultyName, slot.rawText, slot.courseName].filter(Boolean).join(" ");
+  const matches = [...haystack.matchAll(/Group\s*(\d+)/gi)].map((m) => Number(m[1]));
+  return [...new Set(matches)];
+};
+
 const normalizeCourse = (slot) => ({
   _id: slot._id,
   courseCode: slot.courseCode,
@@ -66,6 +84,7 @@ const normalizeCourse = (slot) => ({
   program: slot.program,
   source: slot.source,
   rawText: slot.rawText,
+  groups: parseGroupNumbers(slot),
   isLab: typeof slot.courseCode === "string" && slot.courseCode.includes("/")
 });
 
@@ -122,6 +141,9 @@ export default function TimeTable(props) {
 
   const isAdmin = user?.role === "admin";
 
+  // --- Group filter (labs split into parallel Group 1 / Group 2 / ... rooms) ---
+  const [groupFilter, setGroupFilter] = useState("all");
+
   // --- Edit / delete existing slot ---
   const [editingCourse, setEditingCourse] = useState(null);
   const [editForm, setEditForm] = useState(emptyEditForm);
@@ -169,6 +191,23 @@ export default function TimeTable(props) {
     : [];
   const subjectMap = getSubjectMap(data);
   const section = user ? `${user.batch} · ${user.semester}` : "Sample CSE timetable";
+
+  const availableGroups = [
+    ...new Set(
+      data.flatMap((row) =>
+        row.schedule.flatMap((cell) => (cell && cell !== "covered" ? cell.flatMap((c) => c.groups || []) : []))
+      )
+    )
+  ].sort((a, b) => a - b);
+
+  // A row with no group tag at all (most classes) is shown regardless of the
+  // selected group. A row tagged with more than one group is shared, not
+  // split, so it also stays visible either way. Only a row exclusively
+  // tagged for the *other* group gets hidden.
+  const matchesGroupFilter = (course) => {
+    const groups = course.groups || [];
+    return groupFilter === "all" || groups.length !== 1 || groups[0] === Number(groupFilter);
+  };
 
   // --- Edit handlers ---
   const openEdit = (course) => {
@@ -321,6 +360,19 @@ export default function TimeTable(props) {
           <h1>Weekly Timetable</h1>
           <p>Academic Year {props.year} · {section}</p>
         </div>
+        {availableGroups.length > 0 && (
+          <label className="group-filter">
+            GROUP
+            <select value={groupFilter} onChange={(e) => setGroupFilter(e.target.value)}>
+              <option value="all">Both groups</option>
+              {availableGroups.map((g) => (
+                <option value={g} key={g}>
+                  Group {g}
+                </option>
+              ))}
+            </select>
+          </label>
+        )}
       </header>
 
       {user && loadError && <p className="schedule-empty">{loadError}</p>}
@@ -372,7 +424,9 @@ export default function TimeTable(props) {
 
                     if (course === "covered") return null;
 
-                    if (!course) {
+                    const visibleCourses = course ? course.filter(matchesGroupFilter) : [];
+
+                    if (!visibleCourses.length) {
                       if (isAdmin && row.rawStartTime && row.rawEndTime) {
                         return (
                           <button
@@ -401,11 +455,11 @@ export default function TimeTable(props) {
                         className="course-cell"
                         style={{
                           gridRow: dayIdx + 1,
-                          gridColumn: `${colIdx + 2} / span ${course[0].rowSpan || 1}`
+                          gridColumn: `${colIdx + 2} / span ${visibleCourses[0].rowSpan || 1}`
                         }}
                         key={key}
                       >
-                        {course.map((c) => {
+                        {visibleCourses.map((c) => {
                           const color = subjectMap.get(c.courseCode)?.color || "lime";
                           return (
                             <article

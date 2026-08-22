@@ -60,6 +60,33 @@ html, body {
   margin-top: 28px;
 }
 
+.group-filter {
+  color: var(--schedule-muted);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  gap: 6px;
+  letter-spacing: 2px;
+}
+
+.group-filter select {
+  background: var(--schedule-surface);
+  border: 1px solid #35302b;
+  border-radius: 10px;
+  color: var(--schedule-text);
+  font-family: Poppins, Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 14px;
+}
+
+.group-filter select:focus {
+  border-color: var(--lime);
+  outline: none;
+}
+
 .schedule-badge {
   align-items: center;
   display: grid;
