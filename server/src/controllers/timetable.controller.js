@@ -28,7 +28,9 @@ const importedSort = { dayOfWeek: 1, startMinutes: 1, endMinutes: 1 };
 
 export const getImportedTodayTimetable = async (req, res) => {
   try {
-    const day = dayNames[new Date().getDay()];
+    const day = dayNames[
+      new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata", weekday: "long" }).toLowerCase()
+    ];
     const classes = await ClassSchedule.find(importedFilterForUser(req.user, { dayOfWeek: day }))
       .sort({ startMinutes: 1, endMinutes: 1 })
       .lean();
