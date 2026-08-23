@@ -36,7 +36,6 @@ const getSubjectMap = (rows) => {
   const map = new Map();
 
   rows.forEach((row) => {
-    if (row.isBreak) return;
     row.schedule.forEach((cell) => {
       if (!cell || cell === "covered") return;
       cell.forEach((course) => {
@@ -132,20 +131,14 @@ const buildRowsFromSchedules = (schedules) => {
       return matches.map((match) => ({ ...normalizeCourse(match), rowSpan }));
     });
 
-    // Lunch is fixed at 12-1 for every batch and semester, and only renders as
-    // the full-height break banner when nothing at all is scheduled then. This
-    // used to be inferred instead — any all-empty column became a "Lunch
-    // Break" banner — which put spurious extra banners on sparse timetables (a
-    // 7th-sem batch free at 10-11 every day got a second, wrong one). Batches
-    // that do run a class through 12-1 on some days render that column as
-    // normal cells.
-    const isBreak = start === DAY_START_MINUTES + 3 * HOUR && schedule.every((c) => c === null);
-
+    // Every hour is an ordinary slot, lunch included. Lunch lands at a
+    // different hour per batch and per day, so singling one column out as a
+    // styled "break" made the grid inconsistent between semesters and hid a
+    // slot admins sometimes need to schedule into.
     return {
       timeSlot: `${formatSeedTime(minutesToTime(start))} - ${formatSeedTime(minutesToTime(end))}`,
       rawStartTime: minutesToTime(start),
       rawEndTime: minutesToTime(end),
-      isBreak,
       schedule
     };
   });
@@ -427,10 +420,7 @@ export default function TimeTable(props) {
             <div className="schedule-grid--days">
               <div />
               {data.map((row) => (
-                <div
-                  className={`time-cell time-cell--header${row.isBreak ? " time-cell--header-break" : ""}`}
-                  key={`head-${row.timeSlot}`}
-                >
+                <div className="time-cell time-cell--header" key={`head-${row.timeSlot}`}>
                   {formatSlot(row.timeSlot)}
                 </div>
               ))}
@@ -440,17 +430,6 @@ export default function TimeTable(props) {
               className="schedule-rows schedule-rows--grid"
               style={{ gridTemplateRows: `repeat(${dayKeys.length}, auto)` }}
             >
-              {data.map((row, colIdx) =>
-                row.isBreak ? (
-                  <div
-                    className="banner-row banner-row--vertical"
-                    style={{ gridRow: `1 / span ${dayKeys.length}`, gridColumn: colIdx + 2 }}
-                    key={`break-${row.timeSlot}`}
-                  >
-                  </div>
-                ) : null
-              )}
-
               {dayKeys.map((dayKey, dayIdx) => (
                 <div key={dayKey} style={{ display: "contents" }}>
                   <div className="day-heading day-heading--row" style={{ gridRow: dayIdx + 1, gridColumn: 1 }}>
@@ -458,8 +437,6 @@ export default function TimeTable(props) {
                   </div>
 
                   {data.map((row, colIdx) => {
-                    if (row.isBreak) return null; 
-
                     const course = row.schedule[dayIdx];
                     const key = `${dayKey}-${row.timeSlot}`;
 

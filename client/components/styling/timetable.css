@@ -215,21 +215,6 @@ html, body {
   padding-bottom: 4px;
 }
 
-/* The Lunch Break column's header reuses .time-cell--header, but that class
-   sets background:none — fine for plain time labels floating above the
-   grid, but it meant the "Lunch Break" text had no box at all and just sat
-   on the dark page background, making it look like it had blended into the
-   background instead of reading as a header for the vertical banner below.
-   Give it the same surface color as that banner, with only the top corners
-   rounded, so header + banner read as one continuous panel. */
-.time-cell--header-break {
-  background: var(--schedule-surface);
-  border-radius: var(--radius) var(--radius) 0 0;
-  color: var(--schedule-text);
-  font-weight: 600;
-  padding: 8px 4px 10px;
-}
-
 /* The leading column now holds day names, not times — give it the same
    full-height dark cell treatment the time column used to have, but with
    the bolder day-heading type. */
@@ -364,28 +349,6 @@ html, body {
   color: var(--orange-text);
 }
 
-.banner-row {
-  align-items: center;
-  background: var(--schedule-surface);
-  border-radius: var(--radius);
-  color: var(--schedule-muted);
-  display: flex;
-  font-size: 18px;
-  font-weight: 600;
-  justify-content: center;
-  letter-spacing: 0;
-  min-height: 76px;
-}
-
-/* Lunch/gap column now runs top-to-bottom across every day-row instead of
-   left-to-right across every day-column. */
-.banner-row--vertical {
-  min-height: 0;
-  padding: 12px 6px;
-  text-align: center;
-  white-space: pre-line;
-}
-
 .schedule-sidebar {
   display: grid;
   gap: 28px;
@@ -494,8 +457,7 @@ html, body {
   }
 
   .schedule-grid--days,
-  .schedule-rows--grid,
-  .banner-row {
+  .schedule-rows--grid {
     min-width: 620px;
   }
 
