@@ -174,6 +174,12 @@ html, body {
   background: var(--schedule-surface-dark);
 }
 
+.empty-cell {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 /* Wraps one or more .course-block cards in a single grid cell — a cell can
    hold two parallel lab groups (same day/time, different rooms), which
    stack vertically here instead of the second one being silently dropped. */
@@ -660,7 +666,8 @@ html, body {
   text-transform: uppercase;
 }
 
-.edit-modal input {
+.edit-modal input,
+.edit-modal select {
   background: var(--schedule-surface-dark);
   border: 1px solid #35302b;
   border-radius: 10px;
@@ -672,7 +679,8 @@ html, body {
   text-transform: none;
 }
 
-.edit-modal input:focus {
+.edit-modal input:focus,
+.edit-modal select:focus {
   border-color: var(--lime);
   outline: none;
 }

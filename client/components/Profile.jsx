@@ -4,8 +4,8 @@ import { useAuth } from "../context/Auth";
 import "./styling/Profile.css";
 import { BlinkBlur } from "react-loading-indicators";
 import { useNavigate } from "react-router-dom";
+import { getBatchOptions } from "../src/batchOptions";
 
-const allowedBatches = ["CSE","CSE 1", "CSE 2", "MNC", "ECE"];
 const allowedSemesters = [
   "Semester 1",
   "Semester 2",
@@ -60,10 +60,16 @@ export default function Profile() {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((previous) => ({
-      ...previous,
-      [name]: value
-    }));
+    setFormData((previous) => {
+      if (name !== "semester") return { ...previous, [name]: value };
+
+      const options = getBatchOptions(value);
+      return {
+        ...previous,
+        semester: value,
+        batch: options.includes(previous.batch) ? previous.batch : options[0]
+      };
+    });
   };
 
   const handleLogout = () => {
@@ -190,20 +196,6 @@ export default function Profile() {
               </div>
 
               <div className="form-group">
-                <label>BATCH</label>
-                <div className="profile-input-wrapper">
-                  <select name="batch" value={formData.batch} onChange={handleInputChange}>
-                    <option value="">Select Batch</option>
-                    {allowedBatches.map((batch) => (
-                      <option key={batch} value={batch}>
-                        {batch}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group">
                 <label>SEMESTER</label>
                 <div className="profile-input-wrapper">
                   <select name="semester" value={formData.semester} onChange={handleInputChange}>
@@ -211,6 +203,26 @@ export default function Profile() {
                     {allowedSemesters.map((semester) => (
                       <option key={semester} value={semester}>
                         {semester}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label>BATCH</label>
+                <div className="profile-input-wrapper">
+                  <select name="batch" value={formData.batch} onChange={handleInputChange}>
+                    <option value="">Select Batch</option>
+                    {/* Keep the account's current value selectable even if it predates
+                        this semester's option list (e.g. a legacy "CSE 1"/"CSE 2"),
+                        so the field doesn't silently show blank until re-saved. */}
+                    {formData.batch && !getBatchOptions(formData.semester).includes(formData.batch) && (
+                      <option value={formData.batch}>{formData.batch}</option>
+                    )}
+                    {getBatchOptions(formData.semester).map((batch) => (
+                      <option key={batch} value={batch}>
+                        {batch}
                       </option>
                     ))}
                   </select>

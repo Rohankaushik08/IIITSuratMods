@@ -4,20 +4,25 @@ import User from "../models/User.js";
 import generateToken from "../utils/generateToken.js";
 import { createOtp, hashOtp, sendEmailOtp, sendPasswordResetOtp } from "../utils/emailVerification.js";
 
+// `role` must be included: the sidebar decides whether to show the Admin link
+// from it, and leaving it out of the login response meant an admin saw no
+// Admin link until they happened to open Profile (which refetches the full
+// user via /auth/me and backfills the field).
 const safeUser = (user) => ({
   id: user._id,
   username: user.username,
   email: user.email,
   emailVerified: user.emailVerified,
   batch: user.batch,
-  semester: user.semester
+  semester: user.semester,
+  role: user.role
 });
 
 const OTP_EXPIRY_MINUTES = 10;
 const OTP_COOLDOWN_SECONDS = 60;
 const MAX_OTP_ATTEMPTS = 5;
 
-const allowedBatches = ["CSE","CSE 1", "CSE 2", "MNC", "ECE"];
+const allowedBatches = ["CSE", "CSE 1", "CSE 2", "CSE A", "CSE B", "CSE C", "CSE D", "MNC", "ECE"];
 
 const allowedSemesters = [
   "Semester 1",

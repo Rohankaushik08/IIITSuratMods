@@ -5,8 +5,13 @@ import api from "../src/api";
 import "./styling/academics.css";
 
 const branchByBatch = {
+  CSE: "UGCSE",
   "CSE 1": "UGCSE",
   "CSE 2": "UGCSE",
+  "CSE A": "UGCSE",
+  "CSE B": "UGCSE",
+  "CSE C": "UGCSE",
+  "CSE D": "UGCSE",
   ECE: "UGECE",
   MNC: "UGMCS"
 };
@@ -60,9 +65,27 @@ const SUBJECT_HEADER_RE = /^([A-Z]{2,4}\s?-?\s?\d{3,4}[A-Z]?)\s*:\s*(.+?)(?:\s+(
 // parses correctly (a stray "... Edition 2 0 1 0"-shaped line would otherwise
 // risk being read as a new subject).
 const NAME_LTPC_HEADER_RE = /^([A-Za-z][A-Za-z0-9 &\-/().]{2,58}?)\s+(\d)\s+(\d)\s+(\d)\s+(\d)$/;
-const UNIT_RE = /^(?:Unit\s*[–-]?\s*\d+\s*:?\s*)?(.+?)\s+(\d+)\s+Hours?$/i;
-const UNIT_WITH_DETAILS_RE = /^(?:Unit\s*[\u2013-]?\s*(\d+)\s*:?\s*)?(.+?)\s+(\d+)\s+Hours?\s+(.+)$/i;
+// "Unit - N [optional title] HH Hours [optional trailing details]" — number is
+// always explicit; title is frequently absent (the real description follows
+// as separate lines), and sometimes the whole unit — header and full body
+// text — arrives as one giant unbroken line instead. The old version of this
+// regex made the "Unit N" prefix optional-but-preferred, which meant it
+// almost always got swallowed whole into the "title" capture instead of
+// being discarded, so every unit card showed "Unit - 2" as its title with
+// the real content dumped in the body — and the badge (sequential array
+// index) silently drifted out of sync with the source's real unit numbers
+// whenever a unit was skipped in the source PDF.
+const UNIT_NUMBERED_RE = /^Unit\s*[–-]?\s*(\d+)\s*:?\s*(.*?)\s*(\d+)\s+Hours?(?:\s+(.+))?$/i;
+// Rarer PDFs give just "[Title] HH Hours" with no "Unit" word/number at all.
+const UNIT_BARE_RE = /^(.+?)\s+(\d+)\s+Hours?$/i;
+// "1 Unit 1: Title text..." — a serial number followed by "Unit N:", with
+// hours arriving several lines later as its own standalone line (seen in
+// lab-heavy courses like Object Oriented Technology).
+const NUMBERED_UNIT_HEADER_RE = /^\d{1,2}\s+Unit\s*[–-]?\s*(\d+)\s*:\s*(.+)$/i;
+const TRAILING_HOURS_RE = /^(\d+)\s+Hours?$/i;
 const BOOK_SECTION_RE = /^(Recommended Books|Reference Books|Text-?Books?|Text Books?)$/i;
+const LAB_SECTION_RE = /^(List of experiments:?|Sr\.?\s*No\.?\s+Name of Experiment)$/i;
+const BOILERPLATE_RE = /^S\.?No\.?\s+Detailed Syllabus$/i;
 const CONTACT_RE = /^Total Contact (?:Time|Hours).*?:?\s*(\d+)\s+Hours?$/i;
 
 const normalizeSyllabusLine = (line) =>
@@ -98,13 +121,18 @@ const parseSubjectSyllabus = (lines) => {
   const subjects = [];
   let current = null;
   let activeBookSection = "";
+  let activeLabSection = false;
 
   const ensureCurrent = () => {
     if (!current) {
-      current = { code: "", name: "Syllabus", credits: null, units: [], books: [], notes: [], contactHours: "" };
+      current = { code: "", name: "Syllabus", credits: null, units: [], books: [], experiments: [], notes: [], contactHours: "" };
       subjects.push(current);
     }
     return current;
+  };
+
+  const pushUnit = (number, title, hours) => {
+    ensureCurrent().units.push({ number: number ? Number(number) : null, title: title.trim(), hours: hours || "", details: "" });
   };
 
   const appendToLastUnit = (text) => {
@@ -123,6 +151,7 @@ const parseSubjectSyllabus = (lines) => {
   expanded.forEach((line) => {
     if (!line) return;
     if (/^B\.?\s?Tech/i.test(line) && !SUBJECT_HEADER_RE.test(line)) return;
+    if (BOILERPLATE_RE.test(line)) return;
 
     const subjectHeader = line.match(SUBJECT_HEADER_RE);
     if (subjectHeader) {
@@ -133,21 +162,24 @@ const parseSubjectSyllabus = (lines) => {
         credits: c ? { l, t, p, c } : null,
         units: [],
         books: [],
+        experiments: [],
         notes: [],
         contactHours: ""
       };
       subjects.push(current);
       activeBookSection = "";
+      activeLabSection = false;
       return;
     }
 
-    if (!hasCodedHeader && !UNIT_RE.test(line) && !CONTACT_RE.test(line)) {
+    if (!hasCodedHeader && !UNIT_BARE_RE.test(line) && !CONTACT_RE.test(line)) {
       const altHeader = line.match(NAME_LTPC_HEADER_RE);
       if (altHeader) {
         const [, name, l, t, p, c] = altHeader;
-        current = { code: "", name: name.trim(), credits: { l, t, p, c }, units: [], books: [], notes: [], contactHours: "" };
+        current = { code: "", name: name.trim(), credits: { l, t, p, c }, units: [], books: [], experiments: [], notes: [], contactHours: "" };
         subjects.push(current);
         activeBookSection = "";
+        activeLabSection = false;
         return;
       }
     }
@@ -156,11 +188,25 @@ const parseSubjectSyllabus = (lines) => {
     if (contact && current) {
       current.contactHours = contact[1];
       activeBookSection = "";
+      activeLabSection = false;
       return;
     }
 
     if (BOOK_SECTION_RE.test(line)) {
       activeBookSection = line;
+      activeLabSection = false;
+      return;
+    }
+
+    if (LAB_SECTION_RE.test(line)) {
+      activeLabSection = true;
+      activeBookSection = "";
+      return;
+    }
+
+    if (activeLabSection) {
+      const numbered = line.match(/^(\d{1,2})\s+(.+)$/);
+      ensureCurrent().experiments.push(numbered ? numbered[2] : line);
       return;
     }
 
@@ -169,26 +215,50 @@ const parseSubjectSyllabus = (lines) => {
       return;
     }
 
-    const unit = line.match(UNIT_RE);
-    if (unit) {
-      ensureCurrent().units.push({ title: unit[1].trim(), hours: unit[2], details: "" });
+    // Serial-numbered "N Unit M: Title" header — hours arrive later on their
+    // own standalone line, handled by the TRAILING_HOURS_RE check below.
+    const numberedHeader = line.match(NUMBERED_UNIT_HEADER_RE);
+    if (numberedHeader) {
+      const [, unitNumber, title] = numberedHeader;
+      pushUnit(unitNumber, title, "");
+      return;
+    }
+
+    const trailingHours = line.match(TRAILING_HOURS_RE);
+    if (trailingHours && current && current.units.length && !current.units[current.units.length - 1].hours) {
+      current.units[current.units.length - 1].hours = trailingHours[1];
+      return;
+    }
+
+    const unitNumbered = line.match(UNIT_NUMBERED_RE);
+    if (unitNumbered) {
+      const [, number, title, hours, trailingDetails] = unitNumbered;
+      pushUnit(number, title, hours);
+      if (trailingDetails) ensureCurrent().units[ensureCurrent().units.length - 1].details = trailingDetails.trim();
       activeBookSection = "";
       return;
     }
 
-    const unitWithDetails = line.match(UNIT_WITH_DETAILS_RE);
-    if (unitWithDetails) {
-      const [, unitNumber, title, hours, details] = unitWithDetails;
-      ensureCurrent().units.push({
-        title: title.trim() || `Unit ${unitNumber}`,
-        hours,
-        details: details.trim()
-      });
+    const unitBare = line.match(UNIT_BARE_RE);
+    if (unitBare) {
+      pushUnit(null, unitBare[1], unitBare[2]);
       activeBookSection = "";
       return;
     }
 
     appendToLastUnit(line);
+  });
+
+  // A course whose content starts before any "Unit N" header appears (the
+  // source PDF sometimes just omits Unit 1's own header) ends up as orphaned
+  // notes instead of a unit. If there's no unit numbered 1, treat leading
+  // notes as the implicit Unit 1 rather than leaving them stray below the
+  // card grid.
+  subjects.forEach((subject) => {
+    if (subject.notes.length && subject.units.length && !subject.units.some((u) => u.number === 1)) {
+      subject.units.unshift({ number: 1, title: "", hours: "", details: subject.notes.join(" ") });
+      subject.notes = [];
+    }
   });
 
   return subjects.filter((subject) => subject.code || subject.units.length || subject.books.length);
@@ -241,12 +311,15 @@ function SubjectSyllabus({ subjects }) {
           {subject.units.length > 0 && (
             <div className="unit-list">
               {subject.units.map((unit, unitIndex) => (
-                <section className="unit-card" key={`${subject.code}-${unit.title}-${unitIndex}`}>
+                <section className="unit-card" key={`${subject.code}-${unit.number ?? unitIndex}-${unitIndex}`}>
                   <div className="unit-card__heading">
-                    <strong>Unit {unitIndex + 1}</strong>
-                    <span>{unit.hours} hours</span>
+                    <strong>Unit {unit.number ?? unitIndex + 1}</strong>
+                    {unit.hours && <span>{unit.hours} hours</span>}
                   </div>
-                  <h5>{unit.title}</h5>
+                  {/* Some source PDFs give a bare "Unit N Hours" header with no
+                      separate title text — nothing meaningful to show here then,
+                      so the description paragraph below stands on its own. */}
+                  {unit.title && <h5>{unit.title}</h5>}
                   {unit.details && <p>{unit.details}</p>}
                 </section>
               ))}
@@ -261,9 +334,19 @@ function SubjectSyllabus({ subjects }) {
             </div>
           )}
 
-          {(subject.contactHours || subject.books.length > 0) && (
+          {(subject.contactHours || subject.books.length > 0 || subject.experiments.length > 0) && (
             <div className="subject-footer">
               {subject.contactHours && <span className="contact-hours">Total contact time: {subject.contactHours} hours</span>}
+              {subject.experiments.length > 0 && (
+                <details>
+                  <summary>List of experiments</summary>
+                  <ol>
+                    {subject.experiments.map((experiment, experimentIndex) => (
+                      <li key={`${subject.code}-experiment-${experimentIndex}`}>{experiment}</li>
+                    ))}
+                  </ol>
+                </details>
+              )}
               {subject.books.length > 0 && (
                 <details>
                   <summary>Books and references</summary>

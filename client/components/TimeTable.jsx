@@ -88,11 +88,25 @@ const normalizeCourse = (slot) => ({
   isLab: typeof slot.courseCode === "string" && slot.courseCode.includes("/")
 });
 
+// Every source timetable is laid out 9 AM-6 PM, but a batch whose own
+// classes happen to end earlier (e.g. nothing after 5 PM) would otherwise
+// render a shorter grid than every other batch. Always show the full
+// 9-6 span — Math.min/max so it only ever widens for a genuine outlier
+// class outside that window, never clips one.
+const DAY_START_MINUTES = 9 * 60;
+const DAY_END_MINUTES = 18 * 60;
+
 const buildRowsFromSchedules = (schedules) => {
   if (!schedules.length) return [];
 
-  const minStart = Math.min(...schedules.map((s) => s.startMinutes));
-  const maxEnd = Math.max(...schedules.map((s) => s.endMinutes));
+  // Real span of this batch's own classes — used below so the "lunch break"
+  // banner only ever applies to a genuine gap between classes, not to the
+  // padding added to reach the fixed 9-6 display range.
+  const realMinStart = Math.min(...schedules.map((s) => s.startMinutes));
+  const realMaxEnd = Math.max(...schedules.map((s) => s.endMinutes));
+
+  const minStart = Math.min(DAY_START_MINUTES, realMinStart);
+  const maxEnd = Math.max(DAY_END_MINUTES, realMaxEnd);
 
   const hourStarts = [];
   for (let t = minStart; t < maxEnd; t += HOUR) hourStarts.push(t);
@@ -118,7 +132,14 @@ const buildRowsFromSchedules = (schedules) => {
       return matches.map((match) => ({ ...normalizeCourse(match), rowSpan }));
     });
 
-    const isBreak = schedule.every((c) => c === null);
+    // Lunch is fixed at 12-1 for every batch and semester, and only renders as
+    // the full-height break banner when nothing at all is scheduled then. This
+    // used to be inferred instead — any all-empty column became a "Lunch
+    // Break" banner — which put spurious extra banners on sparse timetables (a
+    // 7th-sem batch free at 10-11 every day got a second, wrong one). Batches
+    // that do run a class through 12-1 on some days render that column as
+    // normal cells.
+    const isBreak = start === DAY_START_MINUTES + 3 * HOUR && schedule.every((c) => c === null);
 
     return {
       timeSlot: `${formatSeedTime(minutesToTime(start))} - ${formatSeedTime(minutesToTime(end))}`,
@@ -131,7 +152,13 @@ const buildRowsFromSchedules = (schedules) => {
 };
 
 const emptyEditForm = { courseCode: "", courseName: "", facultyName: "", roomNo: "" };
-const emptyAddForm = { courseCode: "", courseName: "", facultyName: "", roomNo: "" };
+const emptyAddForm = { courseCode: "", courseName: "", facultyName: "", roomNo: "", duration: "1" };
+
+const addHours = (time, hours) => {
+  const [h, m] = String(time).split(":").map(Number);
+  const total = h * 60 + m + hours * 60;
+  return `${String(Math.floor(total / 60)).padStart(2, "0")}:${String(total % 60).padStart(2, "0")}`;
+};
 
 export default function TimeTable(props) {
   const { user } = useAuth();
@@ -156,6 +183,19 @@ export default function TimeTable(props) {
   const [addForm, setAddForm] = useState(emptyAddForm);
   const [adding, setAdding] = useState(false);
   const [addError, setAddError] = useState("");
+
+  // Canonical room list, so an admin editing the timetable can only pick a
+  // room the venues feature also knows about (a free-typed room used to end
+  // up in the schedule but match no venue, breaking free-room lookups).
+  const [venues, setVenues] = useState([]);
+
+  useEffect(() => {
+    if (!isAdmin) return;
+    api
+      .get("/venues")
+      .then((response) => setVenues(response.data.venues || []))
+      .catch(() => setVenues([]));
+  }, [isAdmin]);
 
   useEffect(() => {
     if (!user) {
@@ -326,12 +366,13 @@ export default function TimeTable(props) {
     setAdding(true);
     setAddError("");
 
+    const duration = Number(addForm.duration) || 1;
     const payload = {
       dayOfWeek: addingSlot.dayOfWeek,
       startTime: addingSlot.startTime,
-      endTime: addingSlot.endTime,
+      endTime: duration === 2 ? addHours(addingSlot.startTime, 2) : addingSlot.endTime,
       roomNo: addForm.roomNo,
-      batch: user?.batch || "CSE 1",
+      batch: user?.batch || "CSE A",
       semester: user?.semester || "",
       program: "B.Tech",
       source: "admin",
@@ -554,7 +595,16 @@ export default function TimeTable(props) {
 
             <label>
               Room No.
-              <input type="text" value={editForm.roomNo} onChange={handleEditFormChange("roomNo")} />
+              <select value={editForm.roomNo} onChange={handleEditFormChange("roomNo")}>
+                {editForm.roomNo && !venues.some((v) => v.name === editForm.roomNo) && (
+                  <option value={editForm.roomNo}>{editForm.roomNo}</option>
+                )}
+                {venues.map((venue) => (
+                  <option key={venue.name} value={venue.name}>
+                    {venue.name}
+                  </option>
+                ))}
+              </select>
             </label>
 
             {saveError && <p className="edit-error">{saveError}</p>}
@@ -582,7 +632,18 @@ export default function TimeTable(props) {
       {isAdmin && addingSlot && (
         <div className="edit-modal-backdrop" onClick={closeAdd}>
           <div className="edit-modal" onClick={(e) => e.stopPropagation()}>
-            <h2>Add slot · {addingSlot.dayOfWeek} {formatSeedTime(addingSlot.startTime)}–{formatSeedTime(addingSlot.endTime)}</h2>
+            <h2>
+              Add slot · {addingSlot.dayOfWeek} {formatSeedTime(addingSlot.startTime)}–
+              {formatSeedTime(Number(addForm.duration) === 2 ? addHours(addingSlot.startTime, 2) : addingSlot.endTime)}
+            </h2>
+
+            <label>
+              Duration
+              <select value={addForm.duration} onChange={handleAddFormChange("duration")}>
+                <option value="1">1 hour</option>
+                <option value="2">2 hours (lab)</option>
+              </select>
+            </label>
 
             <label>
               Course Code
@@ -601,7 +662,14 @@ export default function TimeTable(props) {
 
             <label>
               Room No.
-              <input type="text" value={addForm.roomNo} onChange={handleAddFormChange("roomNo")} placeholder="e.g. CR 2" />
+              <select value={addForm.roomNo} onChange={handleAddFormChange("roomNo")}>
+                <option value="">Select room</option>
+                {venues.map((venue) => (
+                  <option key={venue.name} value={venue.name}>
+                    {venue.name}
+                  </option>
+                ))}
+              </select>
             </label>
 
             {addError && <p className="edit-error">{addError}</p>}

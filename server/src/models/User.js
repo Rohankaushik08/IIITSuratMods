@@ -63,7 +63,7 @@ const userSchema = new mongoose.Schema(
     batch: {
       type: String,
       required: true,
-      enum: ["CSE","CSE 1", "CSE 2", "MNC", "ECE"],
+      enum: ["CSE", "CSE 1", "CSE 2", "CSE A", "CSE B", "CSE C", "CSE D", "MNC", "ECE"],
       trim: true
     },
     semester: {

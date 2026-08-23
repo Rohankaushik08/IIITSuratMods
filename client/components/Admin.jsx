@@ -20,7 +20,7 @@ const emptySchedule = {
   startTime: "09:00",
   endTime: "10:00",
   roomNo: "",
-  batch: "CSE 1",
+  batch: "CSE A",
   semester: "",
   program: "B.Tech",
   source: "admin",
@@ -28,6 +28,7 @@ const emptySchedule = {
   courseName: "",
   facultyName: "",
   rawText: "",
+  group: "",
 };
 
 const audienceLabels = {
@@ -53,7 +54,13 @@ const dayNames = [
   "saturday",
 ];
 
-const DEFAULT_BRANCHES = ["CSE 1", "CSE 2", "CSE", "ECE", "MNC"];
+const DEFAULT_BRANCHES = ["CSE A", "CSE B", "CSE C", "CSE D", "CSE", "ECE"];
+
+// Superseded batch names. Any of these still sitting in old schedule rows
+// would otherwise be merged back into the dropdown below, re-offering names
+// that no longer exist ("CSE 1"/"CSE 2" are now "CSE A"/"CSE B"; MNC is not
+// currently running).
+const RETIRED_BRANCHES = ["CSE 1", "CSE 2", "MNC"];
 
 const toTimeValue = (date) =>
   `${String(date.getHours()).padStart(2, "0")}:${String(
@@ -119,8 +126,8 @@ export default function Admin() {
     
     // Auto populate existing batches from summary if available
     if (summaryResponse.data?.batches?.length > 0) {
-      const merged = Array.from(new Set([...DEFAULT_BRANCHES, ...summaryResponse.data.batches]));
-      setBranches(merged);
+      const fromData = summaryResponse.data.batches.filter((b) => !RETIRED_BRANCHES.includes(b));
+      setBranches(Array.from(new Set([...DEFAULT_BRANCHES, ...fromData])));
     }
 
     setSchedules(scheduleResponse.data.schedules || []);
@@ -296,8 +303,14 @@ export default function Admin() {
     setSavingNew(true);
     setError("");
 
+    const { group, ...scheduleFields } = newSchedule;
+    // The schema has no dedicated "group" field — the timetable's group filter
+    // detects "Group N" by scanning facultyName/rawText/courseName, so append
+    // it to rawText here to keep this admin-created row consistent with the
+    // rest of the seeded data instead of needing a schema change.
     const payload = {
-      ...newSchedule,
+      ...scheduleFields,
+      rawText: group ? `${scheduleFields.rawText} (Group ${group})`.trim() : scheduleFields.rawText,
       semester: formatSemester(newSchedule.semester),
       program: newSchedule.program || "B.Tech",
       source: newSchedule.source || "admin",
@@ -305,7 +318,7 @@ export default function Admin() {
 
     try {
       await api.post("/admin/schedules", payload);
-      setNewSchedule({ ...emptySchedule, batch: branches[0] || "CSE 1" });
+      setNewSchedule({ ...emptySchedule, batch: branches[0] || "CSE A" });
       setIsAddingNew(false);
       await loadAdminData();
       flash("New schedule entry added successfully.");
@@ -779,14 +792,25 @@ export default function Admin() {
             <div className="admin-field-row">
               <label className="admin-field admin-field--gold">
                 ROOM NO
-                <input
+                {/* Free text here let a typo ("CR2", "Room 2") reach the
+                    database, where it no longer matched any known venue — the
+                    class then vanished from the venue timetable and left the
+                    room looking free in "find a free room". The list is the
+                    same one the venues API serves, so the two can't drift. */}
+                <select
                   value={newSchedule.roomNo}
                   onChange={(e) =>
                     setNewSchedule({ ...newSchedule, roomNo: e.target.value })
                   }
-                  placeholder="e.g. CR 2"
                   required
-                />
+                >
+                  <option value="">Select room</option>
+                  {venues.map((venue) => (
+                    <option key={venue.name} value={venue.name}>
+                      {venue.name}
+                    </option>
+                  ))}
+                </select>
               </label>
 
               <label className="admin-field admin-field--teal">
@@ -819,6 +843,7 @@ export default function Admin() {
                     setNewSchedule({ ...newSchedule, semester: e.target.value })
                   }
                   placeholder="e.g. 3"
+                  required
                 />
               </label>
 
@@ -850,6 +875,7 @@ export default function Admin() {
                     })
                   }
                   placeholder="e.g. CS101"
+                  required
                 />
               </label>
 
@@ -863,6 +889,20 @@ export default function Admin() {
                   placeholder="e.g. admin"
                   required
                 />
+              </label>
+
+              <label className="admin-field admin-field--teal">
+                LAB GROUP
+                <select
+                  value={newSchedule.group}
+                  onChange={(e) =>
+                    setNewSchedule({ ...newSchedule, group: e.target.value })
+                  }
+                >
+                  <option value="">Not split</option>
+                  <option value="1">Group 1</option>
+                  <option value="2">Group 2</option>
+                </select>
               </label>
             </div>
 
@@ -993,7 +1033,7 @@ export default function Admin() {
                       })
                     }
                   />
-                  <input
+                  <select
                     value={scheduleDraft.roomNo}
                     onChange={(event) =>
                       setScheduleDraft({
@@ -1001,7 +1041,18 @@ export default function Admin() {
                         roomNo: event.target.value,
                       })
                     }
-                  />
+                  >
+                    {/* Keep an unknown legacy value selectable so editing an
+                        old row doesn't silently rewrite its room. */}
+                    {scheduleDraft.roomNo && !venues.some((v) => v.name === scheduleDraft.roomNo) && (
+                      <option value={scheduleDraft.roomNo}>{scheduleDraft.roomNo}</option>
+                    )}
+                    {venues.map((venue) => (
+                      <option key={venue.name} value={venue.name}>
+                        {venue.name}
+                      </option>
+                    ))}
+                  </select>
                   <input
                     value={scheduleDraft.courseCode}
                     onChange={(event) =>
