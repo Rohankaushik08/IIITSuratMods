@@ -1,6 +1,6 @@
 import User from "../models/User.js";
 
-const allowedBatches = ["CSE","CSE 1", "CSE 2", "MNC", "ECE"];
+const allowedBatches = ["CSE", "CSE 1", "CSE 2", "CSE A", "CSE B", "CSE C", "CSE D", "MNC", "ECE"];
 const allowedSemesters = [
   "Semester 1",
   "Semester 2",
@@ -18,7 +18,8 @@ const profileResponse = (user) => ({
   email: user.email,
   emailVerified: user.emailVerified,
   batch: user.batch,
-  semester: user.semester
+  semester: user.semester,
+  role: user.role
 });
 
 export const getMyProfile = async (req, res) => {

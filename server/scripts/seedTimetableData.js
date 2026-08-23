@@ -1,5 +1,6 @@
-// Seeds venues and class schedules into MongoDB from data/timetableSeed.json.
-// Safe to re-run: venues are upserted by name and schedules are replaced.
+// Seeds class schedules into MongoDB from data/timetableSeed.json.
+// Venues are a fixed list in src/data/venues.js, not seeded from this file.
+// Safe to re-run: schedules are replaced.
 //
 // Usage, from the server/ folder:  npm run seed:timetables
 import "dotenv/config";
@@ -7,7 +8,6 @@ import { readFile } from "fs/promises";
 import path from "path";
 import { fileURLToPath } from "url";
 import mongoose from "mongoose";
-import Venue from "../src/models/Venue.js";
 import ClassSchedule from "../src/models/ClassSchedule.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -20,15 +20,9 @@ if (!process.env.MONGO_URI) {
 
 try {
   const seed = JSON.parse(await readFile(seedPath, "utf8"));
-  const venues = seed.venues || [];
   const schedules = seed.schedules || [];
 
   await mongoose.connect(process.env.MONGO_URI);
-
-  for (const venue of venues) {
-    await Venue.findOneAndUpdate({ name: venue.name }, venue, { upsert: true, runValidators: true });
-  }
-  console.log(`Upserted ${venues.length} venues.`);
 
   await ClassSchedule.deleteMany({});
   if (schedules.length) {

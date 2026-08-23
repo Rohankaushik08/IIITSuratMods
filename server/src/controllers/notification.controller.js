@@ -1,5 +1,5 @@
 import Notification from "../models/Notification.js";
-import Venue from "../models/Venue.js";
+import { FIXED_VENUES } from "../data/venues.js";
 
 const notificationFields = [
   "title",
@@ -36,7 +36,7 @@ const validateClubEvent = async (fields, res) => {
   }
   fields.eventDurationMinutes = duration;
 
-  const venue = await Venue.findOne({ name: fields.venueName }).lean();
+  const venue = FIXED_VENUES.find((v) => v.name === fields.venueName);
   if (venue && venue.type !== "classroom") {
     res.status(400).json({ message: "Club events can only reserve classrooms" });
     return false;

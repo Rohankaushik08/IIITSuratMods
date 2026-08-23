@@ -6,12 +6,19 @@ import api from "../src/api";
 import "./styling/Login.css";
 import { useNavigate, Link } from "react-router-dom";
 import { BlinkBlur } from "react-loading-indicators";
+import { getBatchOptions } from "../src/batchOptions";
 export default function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [batch, setBatch] = useState("CSE 1");
   const [semester, setSemester] = useState("Semester 1");
+  const [batch, setBatch] = useState(getBatchOptions("Semester 1")[0]);
+
+  const handleSemesterChange = (value) => {
+    setSemester(value);
+    const options = getBatchOptions(value);
+    if (!options.includes(batch)) setBatch(options[0]);
+  };
 
   const nav = useNavigate();
   const [loading,setLoading] = useState(false);
@@ -90,30 +97,12 @@ export default function SignUp() {
             </div>
           </div>
 
-          <div className="input-group field--batch">
-            <label>BATCH</label>
-            <div className="input-wrapper">
-              <select
-                value={batch}
-                onChange={(e) => setBatch(e.target.value)}
-                className="select-input"
-                required
-              >
-                <option value="CSE 1">CSE</option>
-                <option value="CSE 1">CSE 1</option>
-                <option value="CSE 2">CSE 2</option>
-                <option value="MNC">MNC</option>
-                <option value="ECE">ECE</option>
-              </select>
-            </div>
-          </div>
-
           <div className="input-group field--semester">
             <label>SEMESTER</label>
             <div className="input-wrapper">
               <select
                 value={semester}
-                onChange={(e) => setSemester(e.target.value)}
+                onChange={(e) => handleSemesterChange(e.target.value)}
                 className="select-input"
                 required
               >
@@ -125,6 +114,24 @@ export default function SignUp() {
                 <option value="Semester 6">Semester 6</option>
                 <option value="Semester 7">Semester 7</option>
                 <option value="Semester 8">Semester 8</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="input-group field--batch">
+            <label>BATCH</label>
+            <div className="input-wrapper">
+              <select
+                value={batch}
+                onChange={(e) => setBatch(e.target.value)}
+                className="select-input"
+                required
+              >
+                {getBatchOptions(semester).map((option) => (
+                  <option value={option} key={option}>
+                    {option}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

@@ -60,6 +60,33 @@ html, body {
   margin-top: 28px;
 }
 
+.group-filter {
+  color: var(--schedule-muted);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 600;
+  gap: 6px;
+  letter-spacing: 2px;
+}
+
+.group-filter select {
+  background: var(--schedule-surface);
+  border: 1px solid #35302b;
+  border-radius: 10px;
+  color: var(--schedule-text);
+  font-family: Poppins, Inter, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 14px;
+}
+
+.group-filter select:focus {
+  border-color: var(--lime);
+  outline: none;
+}
+
 .schedule-badge {
   align-items: center;
   display: grid;
@@ -141,15 +168,31 @@ html, body {
 }
 
 .time-cell,
-.empty-cell,
-.course-block {
+.empty-cell {
   border-radius: var(--radius);
+  min-height: var(--cell-min-h);
+  background: var(--schedule-surface-dark);
+}
+
+.empty-cell {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+/* Wraps one or more .course-block cards in a single grid cell — a cell can
+   hold two parallel lab groups (same day/time, different rooms), which
+   stack vertically here instead of the second one being silently dropped. */
+.course-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   min-height: var(--cell-min-h);
 }
 
-.time-cell,
-.empty-cell {
-  background: var(--schedule-surface-dark);
+.course-cell .course-block {
+  flex: 1 1 0;
+  min-height: 0;
 }
 
 .time-cell {
@@ -170,21 +213,6 @@ html, body {
   background: none;
   min-height: auto;
   padding-bottom: 4px;
-}
-
-/* The Lunch Break column's header reuses .time-cell--header, but that class
-   sets background:none — fine for plain time labels floating above the
-   grid, but it meant the "Lunch Break" text had no box at all and just sat
-   on the dark page background, making it look like it had blended into the
-   background instead of reading as a header for the vertical banner below.
-   Give it the same surface color as that banner, with only the top corners
-   rounded, so header + banner read as one continuous panel. */
-.time-cell--header-break {
-  background: var(--schedule-surface);
-  border-radius: var(--radius) var(--radius) 0 0;
-  color: var(--schedule-text);
-  font-weight: 600;
-  padding: 8px 4px 10px;
 }
 
 /* The leading column now holds day names, not times — give it the same
@@ -220,12 +248,31 @@ html, body {
 }
 
 .course-block {
+  border-radius: var(--radius);
   display: flex;
   flex-direction: column;
   gap: 10px;
   justify-content: flex-start;
   overflow: hidden;
   padding: 22px 18px;
+}
+
+/* Placeholder shown in a split-lab cell before a group is picked — deliberately
+   muted/dashed instead of a subject color so it reads as a prompt, not a class. */
+.course-block--prompt {
+  align-items: center;
+  background: none;
+  border: 1px dashed #3a352f;
+  color: var(--schedule-muted);
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+.course-block--prompt p {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.4;
 }
 
 .course-block h3 {
@@ -235,17 +282,6 @@ html, body {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.course-title {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.24;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .course-faculty {
@@ -311,28 +347,6 @@ html, body {
 .block--orange {
   background: var(--orange);
   color: var(--orange-text);
-}
-
-.banner-row {
-  align-items: center;
-  background: var(--schedule-surface);
-  border-radius: var(--radius);
-  color: var(--schedule-muted);
-  display: flex;
-  font-size: 18px;
-  font-weight: 600;
-  justify-content: center;
-  letter-spacing: 0;
-  min-height: 76px;
-}
-
-/* Lunch/gap column now runs top-to-bottom across every day-row instead of
-   left-to-right across every day-column. */
-.banner-row--vertical {
-  min-height: 0;
-  padding: 12px 6px;
-  text-align: center;
-  white-space: pre-line;
 }
 
 .schedule-sidebar {
@@ -443,8 +457,7 @@ html, body {
   }
 
   .schedule-grid--days,
-  .schedule-rows--grid,
-  .banner-row {
+  .schedule-rows--grid {
     min-width: 620px;
   }
 
@@ -463,10 +476,6 @@ html, body {
 
   .course-block h3 {
     font-size: 13px;
-  }
-
-  .course-title {
-    font-size: 11px;
   }
 
   .course-faculty {
@@ -489,12 +498,6 @@ html, body {
 
   .course-block--lab h3 {
     font-size: 10.5px;
-    line-height: 1.15;
-  }
-
-  .course-block--lab .course-title {
-    -webkit-line-clamp: 2;
-    font-size: 9px;
     line-height: 1.15;
   }
 
@@ -625,7 +628,8 @@ html, body {
   text-transform: uppercase;
 }
 
-.edit-modal input {
+.edit-modal input,
+.edit-modal select {
   background: var(--schedule-surface-dark);
   border: 1px solid #35302b;
   border-radius: 10px;
@@ -637,7 +641,8 @@ html, body {
   text-transform: none;
 }
 
-.edit-modal input:focus {
+.edit-modal input:focus,
+.edit-modal select:focus {
   border-color: var(--lime);
   outline: none;
 }
