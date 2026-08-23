@@ -1,9 +1,21 @@
 import TimetableSlot from "../models/TimetableSlot.js";
 import ClassSchedule from "../models/ClassSchedule.js";
-import { parseTimeToMinutes } from "../utils/time.js";
+function parseTimeToMinutes(time) {
+  if (!time) return null;
+  const [hourValue, minuteValue] = String(time).split(":").map(Number);
+  if (!Number.isFinite(hourValue) || !Number.isFinite(minuteValue)) return null;
+  return hourValue * 60 + minuteValue;
+}
 
-const dayNames = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
-
+// Resolves "today" using a fixed timezone instead of the server's system
+// clock. Vercel (and most serverless hosts) run functions in UTC, so
+// new Date().getDay() silently returns the wrong day for IST users during
+// the UTC/IST offset window. This always resolves against Asia/Kolkata.
+function getTodayDayName(timeZone = "Asia/Kolkata") {
+  return new Intl.DateTimeFormat("en-US", { timeZone, weekday: "long" })
+    .format(new Date())
+    .toLowerCase();
+}
 // startTime is stored as a string, so a Mongo sort puts "10:00" before "9:00".
 // Sort in JS on parsed minutes instead.
 const byStartTime = (a, b) => (parseTimeToMinutes(a.startTime) ?? 0) - (parseTimeToMinutes(b.startTime) ?? 0);
@@ -28,9 +40,7 @@ const importedSort = { dayOfWeek: 1, startMinutes: 1, endMinutes: 1 };
 
 export const getImportedTodayTimetable = async (req, res) => {
   try {
-    const day = dayNames[
-      new Date().toLocaleString("en-US", { timeZone: "Asia/Kolkata", weekday: "long" }).toLowerCase()
-    ];
+    const day = getTodayDayName();
     const classes = await ClassSchedule.find(importedFilterForUser(req.user, { dayOfWeek: day }))
       .sort({ startMinutes: 1, endMinutes: 1 })
       .lean();
@@ -56,7 +66,7 @@ export const getImportedWeeklyTimetable = async (req, res) => {
 
 export const getTodayTimetable = async (req, res) => {
   try {
-    const day = dayNames[new Date().getDay()];
+    const day = getTodayDayName();
     const classes = await TimetableSlot.find({
       user: req.user._id,
       dayOfWeek: day,
