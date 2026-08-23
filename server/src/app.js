@@ -1,7 +1,6 @@
-//all the code+comments written are cross verified with the documentation ; if u have any suggestions for improvement please let me know :)
 import express from "express";
 import cors from "cors";
-//cors allows frontend and backend to talk when they run on different ports.
+import connectDB from "./config/db.js";
 
 import authRoutes from "./routes/auth.routes.js";
 import profileRoutes from "./routes/profile.routes.js";
@@ -11,27 +10,36 @@ import notificationRoutes from "./routes/notification.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import syllabusRoutes from "./routes/syllabus.routes.js";
 
-const app = express();//creates a web server API
-//Middleware is code that runs during a request before the final route handler.
-app.use(express.json());// adds middleware to parse incoming JSON requests.
+const app = express();
+app.use(express.json());
 
 const allowedOrigins = [process.env.FRONTEND_URL, "http://localhost:5173", "http://127.0.0.1:5173"].filter(Boolean);
 
-//cors(...)` creates a middleware function.
 app.use(
   cors({
     origin(origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
-
       return callback(new Error("Not allowed by CORS"));
     },
-    credentials: true//allows cookies and auth headers to be sent in cross-origin requests
+    credentials: true
   })
 );
 
-//app.get` creates a route for HTTP GET requests.
+// NEW: guarantee a ready DB connection before any route runs, on every
+// invocation (cold or warm). This replaces relying on connectDB() having
+// already finished once at server startup, which doesn't hold reliably
+// across serverless cold starts.
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    res.status(503).json({ message: "Database unavailable, please try again" });
+  }
+});
+
 app.get("/", (req, res) => {
   res.json({ message: "IIIT Surat MOD backend is running" });
 });
