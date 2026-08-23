@@ -174,7 +174,7 @@ export const login = async (req, res) => {
       token
     });
   } catch (error) {
-    res.status(500).json({ message: "Server error" });
+    res.status(500).json({ message: error.message });
   }
 };
 
@@ -219,6 +219,7 @@ export const verifyEmailOtp = async (req, res) => {
       token
     });
   } catch (error) {
+    console.log(error)
     return res.status(500).json({ message: "Unable to verify email" });
   }
 };
